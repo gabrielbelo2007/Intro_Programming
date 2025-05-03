@@ -3,8 +3,8 @@
 
 - Códigos relacionados a Disciplina de IP1
 - **Linguagem utilizada**: C
-- **IDE**: Replit e VSCode
-
+- **IDE**: Replit e CLion
+  
 ### PROJETOS
 
 1.
