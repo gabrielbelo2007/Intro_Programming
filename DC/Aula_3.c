@@ -89,19 +89,19 @@
 
 // PAR DECRESCENTE
 
-int main(void){
-  int inicial;
+// int main(void){
+//   int inicial;
 
-  printf("Digite um número: ");
-  scanf("%i", &inicial);
+//   printf("Digite um número: ");
+//   scanf("%i", &inicial);
 
-  while(inicial > 0){
-    if(inicial % 2 != 0){
-      inicial -= 1;
-      printf("\n%i", inicial);
-    } else {
-      inicial -= 2;
-      printf("\n%i", inicial);
-    }
-  }
-}
+//   while(inicial > 0){
+//     if(inicial % 2 != 0){
+//       inicial -= 1;
+//       printf("\n%i", inicial);
+//     } else {
+//       inicial -= 2;
+//       printf("\n%i", inicial);
+//     }
+//   }
+// }
