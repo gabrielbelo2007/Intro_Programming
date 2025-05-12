@@ -60,25 +60,22 @@ int main(void) {
   printf("Digite um número: ");
   scanf("%i", &numero);
 
-  // for(int x = 0; x <= numero; x++){
-  //   for(int i = 0; i <= numero; i++){
-  //     printf("X");
-  //   }
-  //   printf("\n");
-  // }
-
   int n_bolas = 0;
   int n_X = numero;
-  
+
   for(int l = numero; l >= 0; l--){
-    
-    for(int o = 0; o <= n_bolas; o++){
+
+    for(int o = 0; o < n_bolas; o++){
       printf("O ");
     }
-    
-    for (int x = numero; x <= n_X; x--){
+
+    for (int x = 0; x < n_X; x++){
       printf("X ");
     }
+    printf("\n");
+
+    n_bolas++;
+    n_X--;
   }
 }
 
