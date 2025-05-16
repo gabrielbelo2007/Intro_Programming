@@ -1,7 +1,7 @@
 ## Introdução a Programação I 
 ### Bacharelado em Ciência da Computação da UFRPE
 
-- Códigos relacionados a Disciplina de IP1
+- Códigos relacionados a Disciplina de Introdução Programação I
 - **Linguagem utilizada**: C
 - **IDE**: Replit e CLion
 
