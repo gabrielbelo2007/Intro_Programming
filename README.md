@@ -23,3 +23,5 @@
      - [Questão 1](Lista_1/Q_1.c)
      - [Questão 2](Lista_1/Q_2.c)
      - [Questão 3](Lista_1/Q_3.c)
+     - [Questão 4](Lista_1/Q_4.c)
+     - [Questão 5](Lista_1/Q_5.c)
