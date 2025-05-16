@@ -10,17 +10,18 @@ void main()
     printf("Digite um número: ");
     scanf("%i", &numero);
 
-    int x = 1;
-    int cond = numero / 2;
-    for (x; x <= cond; x++)
+    int inicial = 1;
+    int final =  numero;
+    int alternar = numero / 2;
+    for (inicial; inicial <= alternar; inicial++)
     {
-        printf("%i", x);
-        printf("%i", numero);
-        numero--;
+        printf("%i", inicial);
+        printf("%i", final);
+        final--;
     }
 
     if (numero % 2 != 0)
     {
-        printf("%i", x);
+        printf("%i", inicial);
     }
 }
