@@ -19,5 +19,7 @@
 
 ### Provas
 
-1. [Lista 1](
-     - [
+1. [Lista 1](Lista_1)
+     - [Questão 1](Lista_1/Q_1)
+     - [Questão 2](Lista_1/Q_2)
+     - [Questão 3](Lista_1/Q_3)
