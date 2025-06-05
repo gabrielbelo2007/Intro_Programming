@@ -3,6 +3,9 @@
     <words>
       <w>adress</w>
       <w>espaco</w>
+      <w>indice</w>
+      <w>palindromo</w>
+      <w>posicao</w>
     </words>
   </dictionary>
 </component>
