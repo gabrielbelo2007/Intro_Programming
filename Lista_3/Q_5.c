@@ -6,7 +6,7 @@
 
 void main()
 {
-    int inteiros[3];
+    int inteiros[15];
     int tamanho = sizeof(inteiros)/sizeof(int);
     int total = 0;
 

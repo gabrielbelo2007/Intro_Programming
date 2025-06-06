@@ -7,7 +7,7 @@
 
 void main()
 {
-    char texto[];
+    char texto[100];
     scanf("%s", &texto);
 
     int tamanho = strlen(texto);
@@ -18,6 +18,8 @@ void main()
         texto_invertido[index_invertido] = texto[index];
         index_invertido--;
     }
+
+    texto_invertido[tamanho] = '\0';
 
     if (strcmp(texto_invertido, texto) == 0)
     {

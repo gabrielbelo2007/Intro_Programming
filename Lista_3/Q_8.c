@@ -22,6 +22,6 @@ void main()
             index_sem_espaco++;
         }
     }
-
+    frase_sem_espaco[index_sem_espaco] = '\0';
     printf("%s", frase_sem_espaco);
 }
