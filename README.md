@@ -22,11 +22,11 @@
 <details>
 <summary><a href="Lista_1">Lista 1</a></summary>
      <ul>
-     - [Questão 1](Lista_1/Q_1.c)
-     - [Questão 2](Lista_1/Q_2.c)
-     - [Questão 3](Lista_1/Q_3.c)
-     - [Questão 4](Lista_1/Q_4.c)
-     - [Questão 5](Lista_1/Q_5.c)
+     <li> [Questão 1](Lista_1/Q_1.c)</li>
+     <li> [Questão 2](Lista_1/Q_2.c)</li>
+     <li> [Questão 3](Lista_1/Q_3.c)</li>
+     <li> [Questão 4](Lista_1/Q_4.c)</li>
+     <li> [Questão 5](Lista_1/Q_5.c)</li>
      </ul>     
 </details>
      
