@@ -12,6 +12,7 @@
 - [Aula 2](DC/Aula_2.c) - Math operators and Condicional
 - [Aula 3](DC/Aula_3.c) - While and Switch case
 - [Aula 4](DC/Aula_4.c) - FOR e DO While
+- [Aula 5](DC/Aula_5.c) - Vetores
 
 ### Curso
 
@@ -23,10 +24,36 @@
 <summary><a href="Lista_1">Lista 1</a></summary>
      <ul>
          <li><a href="Lista_1/Q_1.c">Questão 1</a></li>
-         <li> [Questão 2](Lista_1/Q_2.c)</li>
-         <li> [Questão 3](Lista_1/Q_3.c)</li>
-         <li> [Questão 4](Lista_1/Q_4.c)</li>
-         <li> [Questão 5](Lista_1/Q_5.c)</li>
+         <li><a href="Lista_1/Q_2.c">Questão 2</a></li>
+         <li><a href="Lista_1/Q_3.c">Questão 3</a></li>
+         <li><a href="Lista_1/Q_4.c">Questão 4</a></li>
+         <li><a href="Lista_1/Q_5.c">Questão 5</a></li>
+     </ul>     
+</details>
+
+
+<details>
+<summary><a href="Lista_2">Lista 2</a></summary>
+     <ul>
+         <li><a href="Lista_2/Q_1.c">Questão 1</a></li>
+         <li><a href="Lista_2/Q_2.c">Questão 2</a></li>
+     </ul>     
+</details>
+
+<details>
+<summary><a href="Lista_3">Lista 3</a></summary>
+     <ul>
+          <li><a href="Lista_3/Q_1.c">Questão 1</a></li>
+          <li><a href="Lista_3/Q_2.c">Questão 2</a></li>
+          <li><a href="Lista_3/Q_3.c">Questão 3</a></li>
+          <li><a href="Lista_3/Q_4.c">Questão 4</a></li>
+          <li><a href="Lista_3/Q_5.c">Questão 5</a></li>
+          <li><a href="Lista_3/Q_6.c">Questão 6</a></li>
+          <li><a href="Lista_3/Q_7.c">Questão 7</a></li>
+          <li><a href="Lista_3/Q_8.c">Questão 8</a></li>
+          <li><a href="Lista_3/Q_9.c">Questão 9</a></li>
+          <li><a href="Lista_3/Q_10.c">Questão 10</a></li>
+          <li><a href="Lista_3/Q_11.c">Questão 11</a></li>
      </ul>     
 </details>
      
