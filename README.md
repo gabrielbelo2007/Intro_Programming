@@ -17,16 +17,16 @@
 
 - [Semana 1](Classroom/Semana_1.c)
 
-### Provas
+### Listas
 
 <details>
 <summary><a href="Lista_1">Lista 1</a></summary>
      <ul>
-     <li> [Questão 1](Lista_1/Q_1.c)</li>
-     <li> [Questão 2](Lista_1/Q_2.c)</li>
-     <li> [Questão 3](Lista_1/Q_3.c)</li>
-     <li> [Questão 4](Lista_1/Q_4.c)</li>
-     <li> [Questão 5](Lista_1/Q_5.c)</li>
+         <li><a href="Lista_1/Q_1.c">Questão 1</a></li>
+         <li> [Questão 2](Lista_1/Q_2.c)</li>
+         <li> [Questão 3](Lista_1/Q_3.c)</li>
+         <li> [Questão 4](Lista_1/Q_4.c)</li>
+         <li> [Questão 5](Lista_1/Q_5.c)</li>
      </ul>     
 </details>
      
