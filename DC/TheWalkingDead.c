@@ -10,9 +10,7 @@ void main(void) {
     for(int i = 0; i < tam; i++){
         for(int j= 0; j < tam; j++){
             mapa[i][j] = ' ';
-            printf("%c ", mapa[i][j]);
         }
-        printf("\n");
     }
 
     int x_r = rand() % tam;
@@ -60,11 +58,53 @@ void main(void) {
         }
     }
 
+    int vivo = 1;
 
-    for(int i = 0; i < tam; i++){
-        for(int j= 0; j < tam; j++){
-            printf("%c ", mapa[i][j]);
+    do{
+        for(int i = 0; i < tam; i++){
+            for(int j= 0; j < tam; j++){
+                printf("%c ", mapa[i][j]);
+            }
+            printf("\n");
         }
-        printf("\n");
-    }
+        
+        char move;
+        printf("\n>");
+        scanf("%c", &move);
+        getchar();
+        
+        switch(move){
+            case 'w':
+                if(x_r-1 >= 0 && mapa[x_r-1][y_r] != '#'){
+                    mapa[x_r][y_r] = ' ';
+                    x_r--;
+                    mapa[x_r][y_r] = 'R';
+                }
+                break;
+            
+            case 's':
+                if(x_r+1 <= tam && mapa[x_r+1][y_r] != '#'){
+                    mapa[x_r][y_r] = ' ';
+                    x_r++;
+                    mapa[x_r][y_r] = 'R';
+                }
+                break;
+            
+            case 'a':
+                if(y_r-1 >= 0 && mapa[x_r][y_r-1] != '#'){
+                    mapa[x_r][y_r] = ' ';
+                    y_r--;
+                    mapa[x_r][y_r] = 'R';
+                }
+                break;
+            
+            case 'd':
+                if(y_r+1 >= 0 && mapa[x_r][y_r+1] != '#'){
+                    mapa[x_r][y_r] = ' ';
+                    y_r++;
+                    mapa[x_r][y_r] = 'R';
+                }
+                break;
+        }
+    }while(vivo);
 }
