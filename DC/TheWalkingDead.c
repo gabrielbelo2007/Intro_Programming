@@ -4,7 +4,7 @@
 
 void main(void) {
     srand(time(NULL));
-    int tam = 20;
+    int tam = 10;
     char mapa[tam][tam+1];
 
     for(int i = 0; i < tam; i++){
@@ -13,52 +13,53 @@ void main(void) {
         }
     }
 
-    int x_r = rand() % tam;
-    int y_r = rand() % tam;
-    mapa[x_r][y_r] = 'R';
+    int l_r = rand() % tam;
+    int c_r = rand() % tam;
+    mapa[l_r][c_r] = 'R';
 
-    int x_s = rand() % tam;
-    int y_s = rand() % tam;
-    while (x_s == x_r && y_s == y_r){
+    int x_s, y_s;
+    do
+    {
         x_s = rand() % tam;
         y_s = rand() % tam;
-    }
-    mapa[x_s][y_s] = 'O';
+    } while (x_s == l_r && y_s == c_r);
+    mapa[x_s][y_s] = ']';
 
-    for(int zumbis = 0; zumbis < 10;  zumbis++) {
+    for(int zumbis = 0; zumbis < 10;) {
         int x_z = rand() % tam;
         int y_z = rand() % tam;
 
-        if (mapa[x_z][y_z] == ' ') {
+        if (mapa[x_z][y_z] == ' ')
+        {
             mapa[x_z][y_z] = 'Z';
-        } else {
-            zumbis--;
+            zumbis++;
         }
     }
 
-    for (int balas = 0; balas < 10; balas++) {
+    for (int balas = 0; balas < 10;) {
         int x_b = rand() % tam;
         int y_b = rand() % tam;
 
         if (mapa[x_b][y_b] == ' ') {
             mapa[x_b][y_b] = '-';
-        } else {
-            balas--;
+            balas++;
         }
     }
 
-    for (int obstaculos = 0; obstaculos < 20; obstaculos++) {
+    for (int obstaculos = 0; obstaculos < 20;) {
         int x_o = rand() % tam;
         int y_o = rand() % tam;
 
-        if (mapa[x_o][y_o] == ' ') {
+        if (mapa[x_o][y_o] == ' ')
+        {
             mapa[x_o][y_o] = '#';
-        } else {
-            obstaculos--;
+            obstaculos++;
         }
     }
 
     int vivo = 1;
+    int balas = 0;
+    int ganhou = 0;
 
     do{
         for(int i = 0; i < tam; i++){
@@ -67,44 +68,203 @@ void main(void) {
             }
             printf("\n");
         }
+        printf("\nBalas: %i restante(s)\n", balas);
         
         char move;
-        printf("\n>");
+        printf("\n> ");
         scanf("%c", &move);
         getchar();
         
         switch(move){
             case 'w':
-                if(x_r-1 >= 0 && mapa[x_r-1][y_r] != '#'){
-                    mapa[x_r][y_r] = ' ';
-                    x_r--;
-                    mapa[x_r][y_r] = 'R';
+                if (l_r-1 >= 0)
+                {
+                    switch (mapa[l_r-1][c_r])
+                    {
+                        case ' ':
+                            mapa[l_r][c_r] = ' ';
+                            l_r--;
+                            mapa[l_r][c_r] = 'R';
+                            break;
+
+                        case 'Z':
+                            if (balas == 0)
+                            {
+                                vivo = 0;
+                            } else
+                            {
+                                balas--;
+                                mapa[l_r][c_r] = ' ';
+                                l_r--;
+                                mapa[l_r][c_r] = 'R';
+                            }
+                            break;
+
+                        case '-':
+                            balas++;
+                            mapa[l_r][c_r] = ' ';
+                            l_r--;
+                            mapa[l_r][c_r] = 'R';
+                            break;
+
+                        case ']':
+                            ganhou = 1;
+                            vivo = 0;
+                            break;
+
+                        default:
+                            printf("Caminho bloqueado!\n\n");
+                    }
                 }
-                break;
+                else
+                {
+                    printf("Fim do mapa, tente outro caminho!\n\n");
+                }
+            break;
             
             case 's':
-                if(x_r+1 <= tam && mapa[x_r+1][y_r] != '#'){
-                    mapa[x_r][y_r] = ' ';
-                    x_r++;
-                    mapa[x_r][y_r] = 'R';
+                if(l_r+1 <= tam){
+                    switch (mapa[l_r+1][c_r])
+                    {
+                        case ' ':
+                            mapa[l_r][c_r] = ' ';
+                            l_r++;
+                            mapa[l_r][c_r] = 'R';
+                            break;
+
+                        case 'Z':
+                            if (balas == 0)
+                            {
+                                vivo = 0;
+                            } else
+                            {
+                                balas--;
+                                mapa[l_r][c_r] = ' ';
+                                l_r++;
+                                mapa[l_r][c_r] = 'R';
+                            }
+                            break;
+
+                        case '-':
+                            balas++;
+                            mapa[l_r][c_r] = ' ';
+                            l_r++;
+                            mapa[l_r][c_r] = 'R';
+                            break;
+
+                        case ']':
+                            ganhou = 1;
+                            vivo = 0;
+                            break;
+
+                        default:
+                            printf("Caminho bloqueado!\n\n");
+                    }
                 }
-                break;
+                else
+                {
+                    printf("Fim do mapa, tente outro caminho!\n\n");
+                }
+            break;
             
             case 'a':
-                if(y_r-1 >= 0 && mapa[x_r][y_r-1] != '#'){
-                    mapa[x_r][y_r] = ' ';
-                    y_r--;
-                    mapa[x_r][y_r] = 'R';
+                if(c_r-1 >= 0){
+                    switch (mapa[l_r][c_r-1])
+                    {
+                        case ' ':
+                            mapa[l_r][c_r] = ' ';
+                            c_r--;
+                            mapa[l_r][c_r] = 'R';
+                            break;
+
+                        case 'Z':
+                            if (balas == 0)
+                            {
+                                vivo = 0;
+                            } else
+                            {
+                                balas--;
+                                mapa[l_r][c_r] = ' ';
+                                c_r--;
+                                mapa[l_r][c_r] = 'R';
+                            }
+                            break;
+
+                        case '-':
+                            balas++;
+                            mapa[l_r][c_r] = ' ';
+                            c_r--;
+                            mapa[l_r][c_r] = 'R';
+                            break;
+
+                        case ']':
+                            ganhou = 1;
+                            vivo = 0;
+                            break;
+
+                        default:
+                            printf("Caminho bloqueado!\n\n");
+                    }
                 }
-                break;
+                else
+                {
+                    printf("Fim do mapa, tente outro caminho!\n\n");
+                }
+            break;
             
             case 'd':
-                if(y_r+1 >= 0 && mapa[x_r][y_r+1] != '#'){
-                    mapa[x_r][y_r] = ' ';
-                    y_r++;
-                    mapa[x_r][y_r] = 'R';
+                if(c_r+1 >= 0){
+                    switch (mapa[l_r][c_r+1])
+                    {
+                    case ' ':
+                        mapa[l_r][c_r] = ' ';
+                        c_r++;
+                        mapa[l_r][c_r] = 'R';
+                        break;
+
+                    case 'Z':
+                        if (balas == 0)
+                        {
+                            vivo = 0;
+                        } else
+                        {
+                            balas--;
+                            mapa[l_r][c_r] = ' ';
+                            c_r++;
+                            mapa[l_r][c_r] = 'R';
+                        }
+                        break;
+
+                    case '-':
+                        balas++;
+                        mapa[l_r][c_r] = ' ';
+                        c_r++;
+                        mapa[l_r][c_r] = 'R';
+                        break;
+
+                    case ']':
+                        ganhou = 1;
+                        vivo = 0;
+                        break;
+
+                    default:
+                        printf("Caminho bloqueado!\n\n");
+                    }
                 }
-                break;
+                else
+                {
+                    printf("Fim do mapa, tente outro caminho!\n\n");
+                }
+            break;
         }
     }while(vivo);
+
+    if (ganhou)
+    {
+        printf("\nVocê escapou!");
+    }
+    else
+    {
+        printf("\nVocê morreu!");
+    }
 }

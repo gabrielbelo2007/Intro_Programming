@@ -17,14 +17,13 @@ void main(void) {
     int c_c = rand() % tam;
     mapa[l_c][c_c] = 'C';
 
-    for(int qtd_pecas = 0; qtd_pecas < 8; qtd_pecas++){
+    for(int qtd_pecas = 0; qtd_pecas < 8;){
         int l_p = rand() % 8;
         int c_p = rand() % 8;
 
         if (mapa[l_p][c_p] == '.'){
             mapa[l_p][c_p] = 'I';
-        } else {
-            qtd_pecas--;
+            qtd_pecas++;
         }
     }
 
@@ -34,33 +33,90 @@ void main(void) {
         }
         printf("\n");
     }
+    printf("\n");
 
-    int comeu;
+    // MOVIMENTACAO
+
+    int comeu = 0;
+
     //Pode se mover para cima
     if(l_c - 2 >= 0){
         // Cima - Direita
-        if(c_c + 1 < tam){
+        if(c_c + 1 <= tam){
             if(mapa[l_c - 2][c_c + 1] == 'I'){
                 comeu++;
+                printf("%i, %i\n", l_c-1, c_c+2);
             }
         }
-        // Cima - Esquerda    
-        else if(c_c - 1 > 0){
+        // Cima - Esquerda
+        if(c_c - 1 >= 0){
             if(mapa[l_c - 2][c_c - 1] == 'I') 
             {
-                 comeu++;  
+                comeu++;
+                printf("%i, %i\n", l_c-1, c_c);
             }
         }
     }
 
-    printf("%i", comeu);
-    
-    // // Pode se mover para baixo
-    // else if(l_c - 2 <= tam){
-    //     // Mover para direita
-    //     if(mapa[l_c - 2][c_c + 1] == '.'){
-    //         comeu++;
-    //     }
-    // }
-    
+    //Pode se mover para baixo
+    if (l_c + 2 <= tam)
+    {
+        // Baixo - Direita
+        if(c_c + 1 <= tam){
+            if(mapa[l_c + 2][c_c + 1] == 'I'){
+                comeu++;
+                printf("%i, %i\n", l_c+3, c_c+2);
+            }
+        }
+        // Baixo - Esquerda
+        if(c_c - 1 >= 0){
+            if(mapa[l_c + 2][c_c - 1] == 'I')
+            {
+                comeu++;
+                printf("%i, %i\n", l_c+3, c_c);
+            }
+        }
+    }
+
+    //Pode se mover para esquerda
+    if (c_c - 2 >= 0)
+    {
+        // Esquerda - Cima
+        if(l_c - 1 >= 0){
+            if(mapa[l_c - 1][c_c - 2] == 'I'){
+                comeu++;
+                printf("%i, %i\n", l_c, c_c-1);
+            }
+        }
+        // Esquerda - Baixo
+        if(l_c + 1 <= tam){
+            if(mapa[l_c + 1][c_c - 2] == 'I')
+            {
+                comeu++;
+                printf("%i, %i\n", l_c+2, c_c-1);
+            }
+        }
+    }
+
+    //Pode se mover para direita
+    if (c_c + 2 <= tam)
+    {
+        // Direita - Cima
+        if(l_c - 1 >= 0){
+            if(mapa[l_c - 1][c_c + 2] == 'I'){
+                comeu++;
+                printf("%i, %i\n", l_c, c_c+3);
+            }
+        }
+        // Direita - Baixo
+        if(l_c + 1 <= tam){
+            if(mapa[l_c + 1][c_c + 2] == 'I')
+            {
+                comeu++;
+                printf("%i, %i\n", l_c+2, c_c+3);
+            }
+        }
+    }
+
+    printf("\nPeças abatidas: %i", comeu);
 }
