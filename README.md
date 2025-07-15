@@ -13,6 +13,12 @@
 - [Aula 3](DC/Aula_3.c) - While and Switch case
 - [Aula 4](DC/Aula_4.c) - FOR e DO While
 - [Aula 5](DC/Aula_5.c) - Vetores
+- [Aula 6](DC/Aula_6.c) - Matrizes
+- [Aula 7](DC/Aula_6-1.c)  - Iteração aleatória de Matrizes
+- [Xadrez](DC/Xadrez_Cavalo.c) - Matrizes
+- [The Walking Dead](DC/TheWalkingDead.c) - Jogo S/ Funções
+- [Banco](DC/Banco_Struct.c) - Banco com Struct
+- [Banco Completo](DC/Banco_Function.c) - Banco com Struct + Funções
 
 ### Curso
 
