@@ -121,11 +121,9 @@ float defender_contra_atacar(Jogador jogador_defensor[], int escolha, int atacad
     case 0:
         float consegue_defender = rand() % 51;
         float defendeu = (jogador_defensor[atacado].defesa * (consegue_defender/100)) * -1;
-        if (defendeu == 0)
-        {
-            defendeu = -1;
-        }
+        defendeu = (defendeu == 0) ? -1 : defendeu;
         return defendeu;
+
     case 1:
         int consegue_contra_atacar = rand() % 2;
         if (consegue_contra_atacar == 0)
@@ -190,15 +188,7 @@ void ataque(Jogador jogador_atacante[], Jogador jogador_defensor[], int tam, int
             float dano = atacar(jogador_atacante[atacante].ataque, jogador_atacante[atacante].vida);
             int atacado = escolha_ataque(jogador_defensor, tam);
 
-            int numero_jogador_defensor;
-            if (numero_jogador == 2)
-            {
-                numero_jogador_defensor = numero_jogador - 1;
-            }
-            else
-            {
-                numero_jogador_defensor = numero_jogador + 1;
-            }
+            int numero_jogador_defensor = (numero_jogador == 2) ? numero_jogador -1 : numero_jogador + 1;
 
             float acao_defensor = escolher_defender_contra_atacar(jogador_atacante[atacante].vida, jogador_defensor, atacado, numero_jogador_defensor);
 
@@ -222,7 +212,7 @@ void ataque(Jogador jogador_atacante[], Jogador jogador_defensor[], int tam, int
                     dano += acao_defensor;
                     if (dano < 0)
                     {
-                        // Caso o defensor tenha defendido tudo, o valor da defesa sera igual ao dano, apenas para melhor visual
+                        // Caso o defensor tenha defendido tudo, o valor da defesa será igual ao dano, apenas para melhor visual
                         acao_defensor = dano;
                         dano = 0;
                     }
@@ -243,8 +233,6 @@ void ataque(Jogador jogador_atacante[], Jogador jogador_defensor[], int tam, int
 
 void jogar()
 {
-    srand(time(NULL));
-
     Jogador jogador1[4];
     Jogador jogador2[4];
 
@@ -276,5 +264,6 @@ void jogar()
 
 void main()
 {
+    srand(time(NULL));
     jogar();
 }
