@@ -3,7 +3,7 @@
 ### 1) Inicialização dos times
 
 - O usuário atribui o nome para cada lutador da sua equipe.
-- Valor randômico para ataque e defesa (valor mínimo é 1).
+- Valores randômicos são atribuídos ao ataque e defesa (valor mínimo é 1) de cada lutador.
 - A vida de todos os lutadores começa de 100.
 
 ### 2) Impressão dos atributos dos lutadores de cada time.
