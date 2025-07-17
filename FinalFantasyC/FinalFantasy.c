@@ -182,7 +182,7 @@ void ataque(Jogador jogador_atacante[], Jogador jogador_defensor[], int tam, int
     {
         printf("\n\n\n\n\nO jogador %i está atacando!\n", numero_jogador);
         printf("====================\n");
-        if (jogador_atacante[atacante].ativo == 1)
+        if (jogador_atacante[atacante].ativo == 1 && jogador_atacante[atacante].vida > 0)
         {
             imprimir_lutador(jogador_atacante, atacante);
             float dano = atacar(jogador_atacante[atacante].ataque, jogador_atacante[atacante].vida);
@@ -224,8 +224,15 @@ void ataque(Jogador jogador_atacante[], Jogador jogador_defensor[], int tam, int
         }
         else
         {
-            printf("O lutador %s não pode atacar nesse turno!\n", jogador_atacante[atacante].nome);
-            jogador_atacante[atacante].ativo = 1;
+            if (jogador_atacante[atacante].vida > 0)
+            {
+                printf("O lutador %s não pode atacar nesse turno!\n", jogador_atacante[atacante].nome);
+                jogador_atacante[atacante].ativo = 1;
+            }
+            else
+            {
+                printf("O lutador %s já está morto!\n", jogador_atacante[atacante].nome);
+            }
             atacante++;
         }
     }
