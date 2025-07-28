@@ -145,6 +145,15 @@ int devolver(Filme filmes[], char codigo_filme[], int posicao){
     return 0;
 }
 
+void listarFilmes(Filme filmes[], int posicao){
+    printf("\n--- Lista de Filmes ---\n");
+    for(int i = 0; i < posicao; i++){
+        if(filmes[i].status == 1){
+            printf("Título: %s | Quantidade Disponível: %i | Código: %s | Preço do Aluguel: %.2f\n", filmes[i].titulo, filmes[i].quatidade_disponivel, filmes[i].preco_aluguel, filmes[i].codigo_filme);
+        }
+    }
+}
+
 int main(){
     setlocale(LC_ALL, "Portuguese");
 
@@ -157,7 +166,7 @@ int main(){
     printf("--- Bem-vindo ao sistema de locadora de filmes! ---\n");
 
     do{
-        printf("Você pode cadastrar(c), remover(r), comprar(c), alugar(a) e devolver filmes(d).\n");
+        printf("Você pode cadastrar(c)\nAdicionar no estoque(a)\nAlugar(a)\nDevolver filmes(d)\n");
         printf("Digite a opção desejada: ");
         scanf("%c", &opcao);
         getchar();
@@ -184,9 +193,25 @@ int main(){
                 }
             }
         }
+        else if(tolower(opcao) == 'a')
+        {   
+            char codigo_filme[21];
+            printf("Digite o código do filme a ser comprado: ");
+            fgets(codigo_filme, sizeof(codigo_filme), stdin);
+            codigo_filme[strcspn(codigo_filme, "\n")] = 0; // Remove newline
+
+            int quantidade;
+            printf("Quantos filmes deseja comprar? ");
+            scanf("%i", &quantidade);
+            getchar();
+
+            comprar(filmes, codigo_filme, posicao, quantidade);
+        }
         else if(tolower(opcao) == 'r')
-        {
-            
+        {   
+            printf("\n--Remoção de Filme--\n");
+            listarFilmes(filmes, posicao);
+
             char codigo_filme[21];
             char* checando_tamanho;
             do{
@@ -202,20 +227,6 @@ int main(){
                 }
             }while(checando_tamanho == NULL);
             remover(filmes, codigo_filme, posicao);
-        }
-        else if(tolower(opcao) == 'b')
-        {
-            char codigo_filme[21];
-            printf("Digite o código do filme a ser comprado: ");
-            fgets(codigo_filme, sizeof(codigo_filme), stdin);
-            codigo_filme[strcspn(codigo_filme, "\n")] = 0; // Remove newline
-
-            int quantidade;
-            printf("Quantos filmes deseja comprar? ");
-            scanf("%i", &quantidade);
-            getchar();
-
-            comprar(filmes, codigo_filme, posicao, quantidade);
         }
         else if(tolower(opcao) == 'a')
         {
