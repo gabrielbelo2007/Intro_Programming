@@ -5,7 +5,7 @@
 typedef struct {
     char titulo[100];
     char codigo_filme[21];
-    int quatidade_disponivel;
+    int quantidade_disponivel;
     int n_alugueis;
     int n_devolucoes;
     float preco_aluguel;
@@ -48,7 +48,7 @@ Filme criarFilme(Filme filmes[], int posicao){
     scanf("%f", &novo_filme.preco_aluguel);
     getchar();
 
-    novo_filme.quatidade_disponivel = 0;
+    novo_filme.quantidade_disponivel = 0;
     novo_filme.n_alugueis = 0;
     novo_filme.n_devolucoes = 0;
     novo_filme.status = 1;
@@ -79,7 +79,7 @@ int comprar(Filme filmes[], char codigo_filme[], int tamanho_usado, int quantida
     int posicao = buscar(filmes, codigo_filme, tamanho_usado);
 
     if(posicao != -1){
-        filmes[posicao].quatidade_disponivel += quantidade;
+        filmes[posicao].quantidade_disponivel += quantidade;
         return 1;
     }
     return 0;
@@ -89,8 +89,8 @@ int alugar(Filme filmes[], char codigo_filme[], int tamanho_usado){
     int posicao = buscar(filmes, codigo_filme, tamanho_usado);
 
     if(posicao != -1){
-        if(filmes[posicao].quatidade_disponivel > 0){
-            filmes[posicao].quatidade_disponivel--;
+        if(filmes[posicao].quantidade_disponivel > 0){
+            filmes[posicao].quantidade_disponivel--;
             filmes[posicao].n_alugueis++;
             return 1;
         }
@@ -103,7 +103,7 @@ int devolver(Filme filmes[], char codigo_filme[], int tamanho_usado){
     int posicao = buscar(filmes, codigo_filme, tamanho_usado);
 
     if(posicao != -1){
-        filmes[posicao].quatidade_disponivel++;
+        filmes[posicao].quantidade_disponivel++;
         filmes[posicao].n_devolucoes++;
         return 1;
     }
@@ -131,7 +131,7 @@ int listarEstoque(Filme filmes[], int tamanho_usado, int vai_alugar){
         printf("\n\n--- Lista de Filmes ---\n");
         for(int i = 0; i < tamanho_usado; i++){
             if(filmes[i].status == 1){
-                printf("Título: %s | Quantidade Disponível: %i | Preço do Aluguel: %.2f | Código: %s\n", filmes[i].titulo, filmes[i].quatidade_disponivel, filmes[i].preco_aluguel, filmes[i].codigo_filme);
+                printf("Título: %s | Quantidade Disponível: %i | Preço do Aluguel: %.2f | Código: %s\n", filmes[i].titulo, filmes[i].quantidade_disponivel, filmes[i].preco_aluguel, filmes[i].codigo_filme);
             }
         }
         return 1;
@@ -143,8 +143,8 @@ int listarEstoque(Filme filmes[], int tamanho_usado, int vai_alugar){
 
     for(int i = 0; i < tamanho_usado; i++)
     {
-        if(filmes[i].status == 1 && filmes[i].quatidade_disponivel > 0){
-            printf("Título: %s | Quantidade Disponível: %i | Preço do Aluguel: %.2f | Código: %s\n", filmes[i].titulo, filmes[i].quatidade_disponivel, filmes[i].preco_aluguel, filmes[i].codigo_filme);
+        if(filmes[i].status == 1 && filmes[i].quantidade_disponivel > 0){
+            printf("Título: %s | Quantidade Disponível: %i | Preço do Aluguel: %.2f | Código: %s\n", filmes[i].titulo, filmes[i].quantidade_disponivel, filmes[i].preco_aluguel, filmes[i].codigo_filme);
             tem_filmes = 1;
         }
     }
@@ -153,7 +153,7 @@ int listarEstoque(Filme filmes[], int tamanho_usado, int vai_alugar){
 
 void listarMaisAlugados(Filme filmes[], int tamanho_usado)
 {
-    printf("\n---Lista de Alugueis---\n");
+    printf("\n---Lista de AlugueSis---\n");
 
     // Criando um vetor para salvar os alugueis desorganizados
     int alugueis_desordenado[tamanho_usado];
@@ -178,7 +178,7 @@ void listarMaisAlugados(Filme filmes[], int tamanho_usado)
             }
         }
         indice_ordenacao = (mudou == 0) ? indice_desordenado : indice_ordenacao;
-        printf("%i", alugueis_desordenado[indice_ordenacao]);
+        printf("Título: %s | Aluguéis: %i", filmes[indice_ordenacao].titulo, filmes[indice_ordenacao].n_alugueis);
 
         // Assim os valores já visto como maiores vão ficar menores que os demais
         alugueis_desordenado[indice_ordenacao] = -1;
@@ -212,7 +212,7 @@ void listarMaisDevolvidos(Filme filmes[], int tamanho_usado)
             }
         }
         indice_ordenacao = (mudou == 0) ? indice_desordenado : indice_ordenacao;
-        printf("%i", devolucoes_desordenada[indice_ordenacao]);
+        printf("Título: %s | Devoluções: %i;n", filmes[indice_ordenacao].titulo, filmes[indice_ordenacao].n_devolucoes);
 
         // Assim os valores já visto como maiores vão ficar menores que os demais
         devolucoes_desordenada[indice_ordenacao] = -1;
