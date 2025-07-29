@@ -19,6 +19,13 @@
 - [The Walking Dead](DC/TheWalkingDead.c) - Jogo S/ Funções
 - [Banco](DC/Banco_Struct.c) - Banco com Struct
 - [Banco Completo](DC/Banco_Function.c) - Banco com Struct + Funções
+- [Mercado](DC/Mercado.c) - Sistema de Estoque e Venda
+- [Jogo da Memória](DC/MemoryGame.c) - *INCOMPLETO*
+
+### Provas
+
+- [Locadora](1_2VA/Locadora.c) - 1VA
+- [Stranger Things](1_2VA/StrangerThings.c) - 2VA
 
 ### Curso
 
