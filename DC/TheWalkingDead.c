@@ -8,7 +8,7 @@ void main(void) {
     char mapa[tam][tam+1];
 
     for(int i = 0; i < tam; i++){
-        for(int j= 0; j < tam; j++){
+        for(int j = 0; j < tam; j++){
             mapa[i][j] = ' ';
         }
     }
