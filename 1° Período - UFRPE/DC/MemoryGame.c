@@ -27,7 +27,7 @@ void imprimir_mapa(int tam, char tabuleiro[tam][tam + 1]){
 void main(){
     int tam = 5;
     char tabuleiro[tam][tam + 1];
-    char gabarito[tam][tam + 1]
+    char gabarito[tam][tam + 1];
     
     inicializar_tabela(tam, tabuleiro);
     inicializar_tabela(tam, gabarito);
