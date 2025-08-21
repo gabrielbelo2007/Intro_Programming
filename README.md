@@ -1,5 +1,6 @@
-## Introdução a Programação I 
-### Bacharelado em Ciência da Computação da UFRPE
+## Introdução a Programação
+### Bacharelado em Ciência da Computação [UFRPE] 
+### Bacharelado em Inteligência Artificial [UFPE] - Atual
 
 - Códigos relacionados a cadeira de IP1
 - **Linguagem utilizada**: C
