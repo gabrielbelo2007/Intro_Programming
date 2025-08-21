@@ -2,7 +2,11 @@
 #include <string.h>
 #include <ctype.h>
 
-int POINTS[] = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
+typedef struct
+{
+    int point;
+    char letra;
+} Score;
 
 int compute_score(char words[][21]);
 
@@ -35,105 +39,62 @@ int main(void)
 
 int compute_score(char words[][21])
 {
-    int points[2];
-    points[0] = 0;
-    points[1] = 0;
+    Score points[] = {
+        {1, 'a'},
+        {3, 'b'},
+        {3, 'c'},
+        {2, 'd'},
+        {1, 'e'},
+        {4, 'f'},
+        {2, 'g'},
+        {4, 'h'},
+        {1, 'i'},
+        {8, 'j'},
+        {5, 'k'},
+        {1, 'l'},
+        {3, 'm'},
+        {1, 'n'},
+        {1, 'o'},
+        {3, 'p'},
+        {10, 'q'},
+        {1, 'r'},
+        {1, 's'},
+        {1, 't'},
+        {1, 'u'},
+        {4, 'v'},
+        {4, 'w'},
+        {8, 'x'},
+        {4, 'y'},
+        {10, 'z'}
+    };
 
+    int points_player[2];
+    points_player[0] = 0;
+    points_player[1] = 0;
+
+    char c_invalid[] = {',', '.', '?', '!'};
     for (int player = 0; player < 2; player++)
     {
         for (int i = 0; i < strlen(words[player]); i++)
         {
             char c = tolower(words[player][i]);
-
-            switch (c)
+            if (strchr(c_invalid, c) == NULL)
             {
-            case 'a':
-                points[player] += POINTS[0];
-                break;
-            case 'b':
-                points[player] += POINTS[1];
-                break;
-            case 'c':
-                points[player] += POINTS[2];
-                break;
-            case 'd':
-                points[player] += POINTS[3];
-                break;
-            case 'e':
-                points[player] += POINTS[4];
-                break;
-            case 'f':
-                points[player] += POINTS[5];
-                break;
-            case 'g':
-                points[player] += POINTS[6];
-                break;
-            case 'h':
-                points[player] += POINTS[7];
-                break;
-            case 'i':
-                points[player] += POINTS[8];
-                break;
-            case 'j':
-                points[player] += POINTS[9];
-                break;
-            case 'k':
-                points[player] += POINTS[10];
-                break;
-            case 'l':
-                points[player] += POINTS[11];
-                break;
-            case 'm':
-                points[player] += POINTS[12];
-                break;
-            case 'n':
-                points[player] += POINTS[13];
-                break;
-            case 'o':
-                points[player] += POINTS[14];
-                break;
-            case 'p':
-                points[player] += POINTS[15];
-                break;
-            case 'q':
-                points[player] += POINTS[16];
-                break;
-            case 'r':
-                points[player] += POINTS[17];
-                break;
-            case 's':
-                points[player] += POINTS[18];
-                break;
-            case 't':
-                points[player] += POINTS[19];
-                break;
-            case 'u':
-                points[player] += POINTS[20];
-                break;
-            case 'v':
-                points[player] += POINTS[21];
-                break;
-            case 'w':
-                points[player] += POINTS[22];
-                break;
-            case 'x':
-                points[player] += POINTS[23];
-                break;
-            case 'y':
-                points[player] += POINTS[24];
-                break;
-            case 'z':
-                points[player] += POINTS[25];
-                break;
-            default:
-                break;
+                for (int letra = 0; letra < sizeof(points); letra++)
+                {
+                    if (c == points[letra].letra)
+                    {
+                        points_player[player] += points[letra].point;
+                        break;
+                    }
+                }
             }
         }
     }
 
-    if (points[0] == points[1])
+    if (points_player[0] == points_player[1])
     {
         return 0;
     }
-    return points[0] > points[1] ? 1 : 2;
+    return points_player[0] > points_player[1] ? 1 : 2;
 }
