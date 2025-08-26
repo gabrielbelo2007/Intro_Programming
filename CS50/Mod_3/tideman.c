@@ -161,7 +161,7 @@ void add_pairs(void)
         {
             if (i != j)
             {
-                if (preferences[i][j] > 0 && preferences[i][j] > preferences[j][i])
+                if (preferences[i][j] > preferences[j][i])
                 {
                     pairs[pair_count].winner = i;
                     pairs[pair_count].loser = j;
@@ -207,38 +207,76 @@ void sort_pairs(void)
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
+    int last_arrow_i = 0;
+    int last_arrow_j = 0;
+
     for (int i = 0; i < pair_count; i++)
     {
-        if (locked[pairs[i].loser][pairs[i].winner] != 1)
+        locked[pairs[i].winner][pairs[i].loser] = 1;
+        locked[pairs[i].loser][pairs[i].winner] = 0;
+
+        last_arrow_i = pairs[i].winner;
+        last_arrow_j = pairs[i].loser;
+    }
+
+    // Verificando se forma um ciclo, se formar eliminando a ultima seta
+    int cycle = 0;
+    for (int i = 0; i < pair_count; i++)
+    {
+        int from = 0;
+        int to = 0;
+        for (int j = 0; j < pair_count; j++)
         {
-            locked[pairs[i].winner][pairs[i].loser] = 1;
+            if (i != j)
+            {
+                if (locked[i][j] == 1)
+                {
+                    to++;
+                }
+                if (locked[j][i] == 1)
+                {
+                    from++;
+                }
+            }
         }
-        else
+
+        if (to == from)
         {
-            locked[pairs[i].winner][pairs[i].loser] = 0;
+            cycle++;
         }
+    }
+
+    if (cycle == candidate_count)
+    {
+        locked[last_arrow_i][last_arrow_j] = 0;
     }
 }
 
 // Print the winner of the election
 void print_winner(void)
 {
+    int strong = 0;
     int greatest = 0;
-    int strongest = 0;
     for (int i = 0; i < pair_count; i++)
     {
-        int strongest_temp = 0;
+        int from = 0;
+        int to = 0;
         for (int j = 0; j < pair_count; j++)
         {
             if (locked[i][j] == 1)
             {
-                strongest_temp++;
+                from++;
+            }
+            if (locked[j][i] == 1)
+            {
+                to++;
             }
         }
-        if (strongest_temp > strongest)
+
+        if ((from - to) > strong)
         {
             greatest = i;
-            strongest = strongest_temp;
+            strong = from - to;
         }
     }
 
