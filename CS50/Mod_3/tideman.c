@@ -62,6 +62,15 @@ int main(int argc, char* argv[])
         }
     }
 
+    // Clear graph of preferences
+    for (int i = 0; i < candidate_count; i++)
+    {
+        for (int j = 0; j < candidate_count; j++)
+        {
+            preferences[i][j] = 0;
+        }
+    }
+
     pair_count = 0;
     int voter_count = 0;
     printf("Number of voters: ");
@@ -80,7 +89,7 @@ int main(int argc, char* argv[])
             printf("Rank %i: ", j + 1);
             scanf("%s", name);
 
-            if (!vote(j, name, ranks))
+            if (vote(j, name, ranks))
             {
                 printf("Invalid vote.\n");
                 return 3;
@@ -118,25 +127,15 @@ int vote(int rank, char name[], int ranks[])
 // Update preferences given one voter's ranks
 void record_preferences(int ranks[])
 {
-    // Inicializando preferences
-    for (int i = 0; i < candidate_count; i++)
-    {
-        for (int j = 0; j < candidate_count; j++)
-        {
-            preferences[i][j] = 0;
-        }
-    }
-
-    // Atualizando o preferences
     int scored[candidate_count - 1];
     for (int i = 0; i < candidate_count - 1; i++)
     {
-        int candidate = ranks[i];
-        scored[i] = candidate;
+        int candidate = ranks[i]; // 1
+        scored[i] = candidate; // 1
         for (int j = 0; j < candidate_count; j++)
         {
             int verificar = 0;
-            for (int z = 0; z <= candidate_count - 1; z++)
+            for (int z = 0; z < candidate_count - 1; z++)
             {
                 if (j == scored[z])
                 {
@@ -164,8 +163,8 @@ void add_pairs(void)
             {
                 if (preferences[i][j] > 0 && preferences[i][j] > preferences[j][i])
                 {
-                    pairs[i].winner = i;
-                    pairs[i].loser = j;
+                    pairs[pair_count].winner = i;
+                    pairs[pair_count].loser = j;
                     pair_count++;
                 }
             }
@@ -208,13 +207,40 @@ void sort_pairs(void)
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
-    // TODO
-    return;
+    for (int i = 0; i < pair_count; i++)
+    {
+        if (locked[pairs[i].loser][pairs[i].winner] != 1)
+        {
+            locked[pairs[i].winner][pairs[i].loser] = 1;
+        }
+        else
+        {
+            locked[pairs[i].winner][pairs[i].loser] = 0;
+        }
+    }
 }
 
 // Print the winner of the election
 void print_winner(void)
 {
-    // TODO
-    return;
+    int greatest = 0;
+    int strongest = 0;
+    for (int i = 0; i < pair_count; i++)
+    {
+        int strongest_temp = 0;
+        for (int j = 0; j < pair_count; j++)
+        {
+            if (locked[i][j] == 1)
+            {
+                strongest_temp++;
+            }
+        }
+        if (strongest_temp > strongest)
+        {
+            greatest = i;
+            strongest = strongest_temp;
+        }
+    }
+
+    printf("%s", candidates[greatest]);
 }
