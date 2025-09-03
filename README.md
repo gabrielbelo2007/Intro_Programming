@@ -17,11 +17,11 @@
 
 ### Sets
 
--[Set - Week 1](CS50/SET_1)
--[Set - Week 2](CS50/SET_2)
--[Set - Week 3](CS50/SET_3)
--[Set - Week 4](CS50/SET_4)
--[Set - Week 5](CS50/SET_5)
+- [Set - Week 1](CS50/SET_1)
+- [Set - Week 2](CS50/SET_2)
+- [Set - Week 3](CS50/SET_3)
+- [Set - Week 4](CS50/SET_4)
+- [Set - Week 5](CS50/SET_5)
 
 ## UFRPE
 
