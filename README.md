@@ -1,12 +1,30 @@
 ## Introdução a Programação
-### Bacharelado em Ciência da Computação [UFRPE] 
-### Bacharelado em Inteligência Artificial [UFPE] - Atual
 
-- Códigos relacionados a cadeira de IP1
+### Bacharelado em Ciência da Computação [UFRPE]
+### Bacharelado em Inteligência Artificial [UFPE] - Atual
+### Introdução a Ciência da Computação - CS50 [HARVARD]
+
 - **Linguagem utilizada**: C
 - **IDE**: Replit e CLion
 
 ---
+## UFPE
+
+### Aulas
+
+
+## CS50
+
+### Sets
+
+-[Set - Week 1](CS50/SET_1)
+-[Set - Week 2](CS50/SET_2)
+-[Set - Week 3](CS50/SET_3)
+-[Set - Week 4](CS50/SET_4)
+-[Set - Week 5](CS50/SET_5)
+
+## UFRPE
+
 ### Aulas
 
 - [Aula 1](DC/Aula_1.c) - Assignments and I/O
@@ -20,10 +38,6 @@
 - [The Walking Dead](DC/TheWalkingDead.c) - Jogo S/ Funções
 - [Banco](DC/Banco_Struct.c) - Banco com Struct
 - [Banco Completo](DC/Banco_Function.c) - Banco com Struct + Funções
-
-### Curso
-
-- [Semana 1](Classroom/Semana_1.c)
 
 ### Listas
 

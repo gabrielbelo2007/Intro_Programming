@@ -3,6 +3,9 @@
     <words>
       <w>acao</w>
       <w>adress</w>
+      <w>bgrs</w>
+      <w>bitmapfileheader</w>
+      <w>bitmapinfoheader</w>
       <w>ceasar</w>
       <w>codigo</w>
       <w>demodog</w>
@@ -11,13 +14,17 @@
       <w>disponivel</w>
       <w>espaco</w>
       <w>indice</w>
+      <w>inptr</w>
       <w>obstaculos</w>
       <w>opcao</w>
       <w>ordenacao</w>
+      <w>outptr</w>
       <w>palindromo</w>
       <w>posicao</w>
       <w>precisao</w>
       <w>quatidade</w>
+      <w>scanlines</w>
+      <w>tideman</w>
     </words>
   </dictionary>
 </component>
