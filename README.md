@@ -5,7 +5,7 @@
 ### Introdução a Ciência da Computação - CS50 [HARVARD]
 
 - **Linguagem utilizada**: C
-- **IDE**: Replit e CLion
+- **IDE**: CLion
 
 ---
 ## UFPE
