@@ -1,17 +1,13 @@
 ## Introdução a Programação
 
-### Bacharelado em Ciência da Computação [UFRPE]
-### Bacharelado em Inteligência Artificial [UFPE] - Atual
-### Introdução a Ciência da Computação - CS50 [HARVARD]
-
-- **Linguagem utilizada**: C
-- **IDE**: CLion
+- **Linguagem utilizada**: C e Python
 
 ---
 ## UFPE
 
-### Aulas
+### Listas
 
+---
 
 ## CS50
 
@@ -22,6 +18,9 @@
 - [Set - Week 3](CS50/SET_3) - Algoritmos
 - [Set - Week 4](CS50/SET_4) - Memória
 - [Set - Week 5](CS50/SET_5) - Estrutura de Dados
+- [Set - Week](CS50/SET_6) - Python
+
+---
 
 ## UFRPE
 
