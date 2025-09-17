@@ -1,0 +1,2 @@
+x = int(input()); operador = input(); y = int(input())
+print(x + y if operador == "+" else x - y if operador == "-" else x * y if operador == "*" else x // y if operador == "/" and y != 0 else "Alerta! Alguém tentou usar um operador que não existe. Só um idiota faria isso. Provavelmente o Jim. Isso é claramente uma tentativa de sabotagem corporativa.")

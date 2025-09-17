@@ -27,17 +27,16 @@ elif(pts_raj > pts_sheldon and pts_raj > pts_leonard and pts_raj > pts_howard):
     ganhador = "Raj"
 elif(pts_howard > pts_sheldon and pts_howard > pts_raj and pts_howard > pts_leonard):
     ganhador = "Howard"
-elif(max(pts_sheldon, pts_raj, pts_leonard, pts_howard) == pts_sheldon):
-    ganhador = "Sheldon"
 else:
-    pts_empatado = max(pts_raj, pts_howard, pts_leonard)
-    if(pts_empatado == pts_leonard):
+    pts_empatado = max(pts_sheldon, pts_raj, pts_howard, pts_leonard)
+    if(pts_empatado == pts_sheldon):
+        ganhador = "Sheldon"
+    elif(pts_empatado == pts_leonard):
         ganhador = "Leonard"
     elif(pts_empatado == pts_raj):
         ganhador = "Raj"
     else:
         ganhador = "Howard"
-
 
 print(f"\nO cientista da semana é: {ganhador}")
 
@@ -49,5 +48,3 @@ elif(ganhador == "Raj"):
     print("Ele comemora... mas ainda precisa da ajuda do cachorro para falar com mulheres.")
 else:
     print("Um pequeno passo para a ciência, um grande salto para alguém com mestrado.")
-
-
