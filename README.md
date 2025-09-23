@@ -31,7 +31,7 @@
 - [Set - Week 3](CS50/SET_3) - Algoritmos
 - [Set - Week 4](CS50/SET_4) - Memória
 - [Set - Week 5](CS50/SET_5) - Estrutura de Dados
-- [Set - Week](CS50/SET_6) - Python
+- [Set - Week 6](CS50/SET_6) - Python
 
 ## UFRPE
 
