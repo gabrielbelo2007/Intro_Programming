@@ -48,8 +48,9 @@ for buscador in range(3):
                     if acao == "Fim da busca nesse prédio.":
                         cfch_3 = pts_3 if local == 0 else cfch_3
                         ctg_3 = pts_3 - cfch_3 if local == 1 else ctg_3
-                        break
-                    pts_3 += 1
+                        procurou = 1
+                    else:
+                        pts_3 += 1
 
 print("Vai começar o esconde-esconde UFPE 2025!\n")
 
