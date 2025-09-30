@@ -18,27 +18,32 @@ ctg_3 = 0
 for buscador in range(3): 
     if buscador == 0:
         for local in range(3):
-            while True:
+            procurou = 0
+            while procurou == 0:
                     acao = input()
                     if acao == "Fim da busca nesse prédio.":
                         cfch_1 = pts_1 if local == 0 else cfch_1
                         ctg_1 = pts_1 - cfch_1 if local == 1 else ctg_1
-                        break
-                    pts_1 += 1
+                        procurou = 1
+                    else:
+                        pts_1 += 1
 
     if buscador == 1:
         for local in range(3):
-            while True:
+            procurou = 0
+            while procurou == 0:
                     acao = input()
                     if acao == "Fim da busca nesse prédio.":
                         cfch_2 = pts_2 if local == 0 else cfch_2
                         ctg_2 = pts_2 - cfch_2 if local == 1 else ctg_2
-                        break
-                    pts_2 += 1
+                        procurou = 1
+                    else:
+                        pts_2 += 1
 
     if buscador == 2:
         for local in range(3):
-            while True:
+            procurou = 0
+            while procurou == 0:
                     acao = input()
                     if acao == "Fim da busca nesse prédio.":
                         cfch_3 = pts_3 if local == 0 else cfch_3
@@ -48,7 +53,7 @@ for buscador in range(3):
 
 print("Vai começar o esconde-esconde UFPE 2025!\n")
 
-print(f"Prontos ou não, lá vai {nome1}")
+print(f"Prontos ou não, lá vai {nome1}.")
 for local in range(3):
     if local == 0:
         print(f"Agora {nome1} procurará no CFCH.")
@@ -65,7 +70,7 @@ for local in range(3):
         for pontos in range(pts_1 - (cfch_1 + ctg_1)):
             print(f"{nome1} achou uma pessoa!")
 
-print(f"\nProntos ou não, lá vai {nome2}")
+print(f"\nProntos ou não, lá vai {nome2}.")
 for local in range(3):
     if local == 0:
         print(f"Agora {nome2} procurará no CFCH.")
@@ -82,7 +87,7 @@ for local in range(3):
         for pontos in range(pts_2 - (cfch_2 + ctg_2)):
             print(f"{nome2} achou uma pessoa!")
 
-print(f"\nProntos ou não, lá vai {nome3}")
+print(f"\nProntos ou não, lá vai {nome3}.")
 for local in range(3):
     if local == 0:
         print(f"Agora {nome3} procurará no CFCH.")
