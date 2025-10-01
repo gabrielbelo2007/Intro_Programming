@@ -27,6 +27,7 @@ for rodada in range(numero_rodadas):
     for letra in palavra_secreta:
         if letra not in letras_certas:
             letras_certas += letra
+
     
     texto = "Palavra: "
     for i in range(len(palavra_secreta)):
