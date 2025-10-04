@@ -18,7 +18,7 @@ else:
          ganhador = competidor1
          qtd_pasteis = pasteis_comp1
 
-    elif(pasteis_comp2 > pasteis_comp1 and pasteis_comp2 > pasteis_comp1):
+    elif(pasteis_comp2 > pasteis_comp3):
          ganhador = competidor2
          qtd_pasteis = pasteis_comp2
 

@@ -22,6 +22,22 @@
      </ul>     
 </details>
 
+<details>
+<summary><a href="Lista_2"><strong>Lista 1 - Comandos Condicionais</strong></a></summary>
+     <ul>
+          <li><a href="CIn/Lista_2/sem_fio.py">Questão 1</a></li>
+          <li><a href="CIn/Lista_2/esconde.py">Questão 2</a></li>
+          <li><a href="CIn/Lista_2/ppt.py">Questão 3</a></li>
+          <li><a href="CIn/Lista_2/torre.py">Questão 4</a></li>
+          <li><a href="CIn/Lista_2/bolinha.py">Questão 5</a></li>
+          <li><a href="CIn/Lista_2/amarelinha.py">Questão 6</a></li>
+          <li><a href="CIn/Lista_2/cabo.py">Questão 6</a></li>
+          <li><a href="CIn/Lista_2/queimada.py">Questão 8</a></li>
+          <li><a href="CIn/Lista_2/pula.py">Questão 9</a></li>
+          <li><a href="CIn/Lista_2/fantasma.py">Questão 10</a></li>
+     </ul>     
+</details>
+
 ## CS50
 
 ### Sets
