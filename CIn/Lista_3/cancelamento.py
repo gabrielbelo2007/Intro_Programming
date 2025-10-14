@@ -5,9 +5,10 @@ qtd_artistas = int(input())
 artistas_seguidores = []
 for artista in range(qtd_artistas):
     nome_seguidores = input()
-    nomes = nome_seguidores.split("-")
+    perfis = nome_seguidores.split("-")
     
-    artistas_seguidores.append(nomes)
+    # Uma lista com os perfis (listas de nome e seguidores) dos artistas
+    artistas_seguidores.append(perfis)
 
 artistas_evento = []
 for artista in range(qtd_artistas):
@@ -30,7 +31,7 @@ for perfil in range(len(artistas_seguidores)):
     
     elif artistas_evento[perfil] == 3:
         print(f"{nome} perdeu 15% dos seguidores!")
-        artistas_seguidores[perfil][1] = int(artistas_seguidores[perfil][1]) * 0.85
+        artistas_seguidores[perfil][1] = round(int(artistas_seguidores[perfil][1]) * 0.85)
 
     else:
         print("Nenhum evento relevante. Seguidores continuam os mesmos.")
@@ -38,21 +39,17 @@ for perfil in range(len(artistas_seguidores)):
 print(f"\n--- RANKING FINAL DE SEGUIDORES ---")
 
 trocou = True
-artistas_ordenados = []
-adicionados = 0
+verificados = 0
 
-while trocou and adicionados < 3:
+while trocou and verificados < qtd_artistas - 1:
     trocou = False
-    menor_valor = 0
 
-    for perfil in range(qtd_artistas):
-        if (artistas_seguidores[perfil][1] > artistas_seguidores[menor_valor][1] or artistas_seguidores[perfil][1] == artistas_seguidores[menor_valor][1]) and perfil not in artistas_ordenados:
-            menor_valor = perfil
+    for index_perfil in range(0, qtd_artistas - 1):
+        if (int(artistas_seguidores[index_perfil][1]) < int(artistas_seguidores[index_perfil + 1][1])):
+            artistas_seguidores[index_perfil], artistas_seguidores[index_perfil + 1] = artistas_seguidores[index_perfil + 1], artistas_seguidores[index_perfil]
             trocou = True
+    
+    verificados += 1
 
-    if trocou:
-        artistas_ordenados.append(menor_valor)
-        adicionados += 1
-
-for posicao, perfil in zip(range(3), artistas_ordenados):
-    print(f"{posicao + 1}º Lugar: {artistas_seguidores[perfil][0]} com {artistas_seguidores[perfil][1]} seguidores.")
+for posicao, perfil in zip(range(3), artistas_seguidores):
+    print(f"{posicao + 1}º Lugar: {perfil[0].strip()} com {perfil[1].strip()} seguidores.")

@@ -25,24 +25,21 @@ if len(convidados) == 0:
 
 else:
     
-    # ORDENANDO O VALOR DAS COMIDAS - ordenei a posição dos valores para depois utilizar na lista de convidados
+    # ORDENANDO O VALOR DAS COMIDAS - crie uma lista com a posição (da lista de comidas_valores original) dos valores ordenados para depois utilizar na lista de convidados
 
-    trocou = True
-    valores_comidas_ordenado = []
+    valores_comida_temp = valores_comidas.copy()
+    valores_comidas_ordenado = valores_comidas.copy()
+    valores_comidas_ordenado.sort()
+
+    indice_comidas_ordenado = []
     qtd_comida = len(valores_comidas)
+    
+    # A lista temporaria é pela limitação do .index() de pegar apenas a posição do primeiro valor
+    for index in range(qtd_comida):
+        posicao_atual = valores_comida_temp.index(valores_comidas_ordenado[index])
 
-    while trocou:
-        trocou = False
-        maior_valor = valores_comidas.index(max(valores_comidas))
-
-        for index in range(qtd_comida):
-            if (valores_comidas[index] < valores_comidas[maior_valor] or valores_comidas[index] == valores_comidas[maior_valor]) and index not in valores_comidas_ordenado:
-                maior_valor = index
-                trocou = True
-
-        if trocou:
-            valores_comidas_ordenado.append(maior_valor)
-
+        valores_comida_temp[posicao_atual] = -1
+        indice_comidas_ordenado.append(posicao_atual)
 
     # ORDENANDO CONVIDADOS - Verificando empate para ordem lexicográfica
 
@@ -53,12 +50,12 @@ else:
 
     for comida_convidado in range(qtd_convidados):
 
-        comida_atual = valores_comidas_ordenado[comida_convidado]
+        comida_atual = indice_comidas_ordenado[comida_convidado]
         convidado_desordenado = convidados[comida_atual]
 
         if comida_convidado < qtd_convidados - 1:
-
-            comida_posterior = valores_comidas_ordenado[comida_convidado + 1]
+            
+            comida_posterior = indice_comidas_ordenado[comida_convidado + 1]
 
             # Checa se o próximo item é de mesmo valor
             if valores_comidas[comida_atual] == valores_comidas[comida_posterior]:

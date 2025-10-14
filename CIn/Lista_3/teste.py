@@ -1,18 +1,19 @@
-valores_comidas = [40, 20, 30]
+qtd_artistas = 3
+
+artistas_seguidores = [["C", 10],["B", 20], ["A", 10]]
 
 trocou = True
-valores_comidas_ordenado = []
-qtd_comida = len(valores_comidas)
+verificados = 0
 
-while trocou:
+while trocou and verificados < qtd_artistas - 1:
     trocou = False
 
-    for index in range(0, qtd_comida - 1):
-        if (valores_comidas[index] < valores_comidas[index + 1]) and index not in valores_comidas_ordenado:
-            maior_valor = index + 1
+    for perfil in range(0, qtd_artistas - 1):
+        if (artistas_seguidores[perfil][1] < artistas_seguidores[perfil + 1][1]):
+            artistas_seguidores[perfil], artistas_seguidores[perfil + 1] = artistas_seguidores[perfil + 1], artistas_seguidores[perfil]
             trocou = True
+    
+    verificados += 1
 
-    if trocou:
-        valores_comidas_ordenado.append(maior_valor)
+print(artistas_seguidores)
 
-print(valores_comidas_ordenado)
