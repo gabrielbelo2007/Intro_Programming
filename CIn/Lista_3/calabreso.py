@@ -28,8 +28,7 @@ else:
     # ORDENANDO O VALOR DAS COMIDAS - crie uma lista com a posição (da lista de comidas_valores original) dos valores ordenados para depois utilizar na lista de convidados
 
     valores_comida_temp = valores_comidas.copy()
-    valores_comidas_ordenado = valores_comidas.copy()
-    valores_comidas_ordenado.sort()
+    valores_comidas_ordenado = sorted(valores_comidas)
 
     indice_comidas_ordenado = []
     qtd_comida = len(valores_comidas)

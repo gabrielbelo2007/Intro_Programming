@@ -1,4 +1,4 @@
-print("--- Simulador de Cancelamento ---")
+print(f"--- Simulador de Cancelamento ---\n")
 
 qtd_artistas = int(input())
 
@@ -34,6 +34,8 @@ for perfil in range(len(artistas_seguidores)):
         artistas_seguidores[perfil][1] = round(int(artistas_seguidores[perfil][1]) * 0.85)
 
     else:
+        # Conversão em int para a ordenação posterior
+        artistas_seguidores[perfil][1] = int(artistas_seguidores[perfil][1])
         print("Nenhum evento relevante. Seguidores continuam os mesmos.")
 
 print(f"\n--- RANKING FINAL DE SEGUIDORES ---")
@@ -45,11 +47,11 @@ while trocou and verificados < qtd_artistas - 1:
     trocou = False
 
     for index_perfil in range(0, qtd_artistas - 1):
-        if (int(artistas_seguidores[index_perfil][1]) < int(artistas_seguidores[index_perfil + 1][1])):
+        if (artistas_seguidores[index_perfil][1] < artistas_seguidores[index_perfil + 1][1]):
             artistas_seguidores[index_perfil], artistas_seguidores[index_perfil + 1] = artistas_seguidores[index_perfil + 1], artistas_seguidores[index_perfil]
             trocou = True
     
     verificados += 1
 
 for posicao, perfil in zip(range(3), artistas_seguidores):
-    print(f"{posicao + 1}º Lugar: {perfil[0].strip()} com {perfil[1].strip()} seguidores.")
+    print(f"{posicao + 1}º Lugar: {perfil[0].strip()} com {perfil[1]} seguidores.")

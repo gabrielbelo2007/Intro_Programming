@@ -4,7 +4,7 @@ numero_sessoes = int(input())
 habilidade_inicial = int(input())
 
 if habilidade_inicial <= 5:
-    print("A gente tem que começar de algum lugar, né? RECEBA")
+    print("A gente tem que começar de algum lugar, né? RECEBA!")
 
 elif habilidade_inicial <= 15:
     print("Não tem jeito, vou ser o melhor do mundo!")
@@ -20,111 +20,88 @@ treinos_e_goleiros = input()
 treinos = treinos_e_goleiros.split("-")
 goleiros_especiais = ["Rokenedy", "IShowSpeed", "Sérgio Soares", "Neymar Jr", "Gabriel Vasconcelos"]
 
-sessoes_ativas = True
+habilidade_atual = float(habilidade_inicial)
 
-while habilidade_inicial <= 100 and sessoes_ativas:
-    for batida, goleiro, sessao in zip(range(0, len(treinos), 2), range(1, len(treinos), 2), range(numero_sessoes)):
-        tipo_batida = treinos[batida] 
-        goleiro = treinos[goleiro]
+indice_batida = 0
+indice_goleiro = 1
+sessoes_jogadas = 0
 
-        goleiro_especial = True
+while habilidade_atual <= 100 and sessoes_jogadas < numero_sessoes:
+    tipo_batida = treinos[indice_batida] 
+    goleiro = treinos[indice_goleiro]
 
-        print(f"TIPO DE PARTIDA: {tipo_batida}")
-        print(f"Nome do Goleiro: {goleiro}")
+    print(f"TIPO DE PARTIDA: {tipo_batida}")
+    print(f"Nome do Goleiro: {goleiro}")
 
-        if goleiro not in goleiros_especiais:
-            habilidade_goleiro = int(input())
-            goleiro_especial = False  
-        
-        campo = input()
-        campo_matriz = eval(campo)
+    goleiro_especial = True
+    if goleiro not in goleiros_especiais:
+        habilidade_goleiro = int(input())
+        goleiro_especial = False  
+    
+    campo = input()
+    campo_matriz = eval(campo)
 
-        x = int(input())
-        y = int(input())
+    x = int(input())
+    y = int(input())
 
-        if goleiro_especial:
-            if goleiro == "Rokenedy":
-                print("Aí não dá, impossível de fazer gol no maior do mundo.")
-                print("A jornada ainda não acabou!")
-                print("Dá pra recuperar depois! Vamo seguindo!")
+    gol = False
+    if campo_matriz[x][y] == 1:
+        gol = True
 
-            elif goleiro == "IShowSpeed":
-                print(f"REBECA? Is that you?\nIspidi mai friand, recieve!")
+    if goleiro_especial and gol:
+        if goleiro == "Rokenedy":
+            print("Aí não dá, impossível de fazer gol no maior do mundo.")
+            gol = False
 
-                if campo_matriz[x][y] != 0:
-                    habilidade_inicial += meta * 1.5
-                    print("RECEBA! GOLAÇO! É O MELHOR DO MUNDO!")
+        elif goleiro == "IShowSpeed":
+            print(f"REBECA? Is that you?\nIspidi mai friand, recieve!")
+            habilidade_atual += meta * 1.5 if gol else 0
 
-                    if habilidade_inicial <= 100:
-                        print(f"VAMO! PARTIDA {sessao + 1} DE {numero_sessoes}!")
-
-                else:
-                    print("A jornada ainda não acabou!")
-                    print("Dá pra recuperar depois! Vamo seguindo!")
-
-            elif goleiro == "Sérgio Soares":
-                print("DALE DALE, PROFESSOR! Quero ver se esse tal de Python é bom mesmo…")
-
-                if campo_matriz[x][y] != 0 and tipo_batida == "Batida de Pênalti":
-                    habilidade_inicial += meta
-                    print("RECEBA! GOLAÇO! É O MELHOR DO MUNDO!")
-
-                    if habilidade_inicial <= 100:
-                        print(f"VAMO! PARTIDA {sessao + 1} DE {numero_sessoes}!")
-
-                else:
-                    print("A jornada ainda não acabou!")
-                    print("Dá pra recuperar depois! Vamo seguindo!")
+        elif goleiro == "Sérgio Soares":
+            print("DALE DALE, PROFESSOR! Quero ver se esse tal de Python é bom mesmo…")
             
-            elif goleiro == "Neymar Jr":
-                print("Ele nem sabe agarrar! A arma dele é a sua fragilidade…")
+            if gol and tipo_batida == "Batida de Pênalti":
+                habilidade_atual += meta
+                
+            else:
+                gol = False
+        
+        elif goleiro == "Neymar Jr":
+            print("Ele nem sabe agarrar! A arma dele é a sua fragilidade…")
+            habilidade_atual += meta * 0.5 if gol else 0
 
-                if campo_matriz[x][y] != 0:
-                    habilidade_inicial += meta // 2
-                    print("RECEBA! GOLAÇO! É O MELHOR DO MUNDO!")
+        elif goleiro == "Gabriel Vasconcelos":
+            print("HAHAHA! Eu pedi um desafio, não uma barra sem goleiro…")
+            habilidade_atual += meta * 2.0 if gol else 0
 
-                else:
-                    print("A jornada ainda não acabou!")
-                    print("Dá pra recuperar depois! Vamo seguindo!")
+    else:
+        if gol and habilidade_atual > habilidade_goleiro:
+            habilidade_atual += (habilidade_atual - habilidade_goleiro) 
 
-            elif goleiro == "Gabriel Vasconcelos":
-                print("HAHAHA! Eu pedi um desafio, não uma barra sem goleiro…")
+    if gol:
+        print("RECEBA! GOLAÇO! É O MELHOR DO MUNDO!")
+    else:
+        print("A jornada ainda não acabou!")
 
-                if campo_matriz[x][y] != 0:
-                    habilidade_inicial += meta * 2
-                    print("RECEBA! GOLAÇO! É O MELHOR DO MUNDO!")
+    if habilidade_atual > 100:
+        print("NÃO TEM JEITO! EU SEMPRE SOUBE QUE IA SER O MELHOR DO MUNDO! RECEBA!")
 
-                    if habilidade_inicial <= 100:
-                        print(f"VAMO! PARTIDA {sessao + 1} DE {numero_sessoes}!")
+    else:
+        sessoes_jogadas += 1
 
-                else:
-                    print("A jornada ainda não acabou!")
-                    print("Dá pra recuperar depois! Vamo seguindo!")
+        if habilidade_inicial + meta <= habilidade_atual:
+            print(f"VAMO! PARTIDA {sessoes_jogadas} DE {numero_sessoes}!")
 
         else:
-            if campo_matriz[x][y] != 0:
-                print("RECEBA! GOLAÇO! É O MELHOR DO MUNDO!")
+            print("Dá pra recuperar depois! Vamo seguindo!")
 
-                if habilidade_inicial > habilidade_goleiro:
-                    habilidade_inicial += (habilidade_inicial - habilidade_goleiro)
-
-                if (habilidade_inicial - habilidade_goleiro) > meta:
-                    print(f"VAMO! PARTIDA {sessao + 1} DE {numero_sessoes}!")
-                
-                else:
-                    print("Dá pra recuperar depois! Vamo seguindo!")
-
-            else:
-                print("A jornada ainda não acabou!")
-                print("Dá pra recuperar depois! Vamo seguindo!")
-
-    sessoes_ativas = False
-
-if habilidade_inicial > 100:
-    print("NÃO TEM JEITO! EU SEMPRE SOUBE QUE IA SER O MELHOR DO MUNDO! RECEBA!")            
-
-elif habilidade_inicial == 100:
+        habilidade_inicial = habilidade_atual
+        indice_batida += 2
+        indice_goleiro += 2
+        
+         
+if habilidade_atual == 100:
     print("O trono do futebol hoje tem dois reis. Eu e Pelé! Não podia estar com alguém melhor!")
 
-else:
+elif habilidade_atual < 100:
     print("Ano que vem tem InterCIn de novo! É só eu treinar mais…")
