@@ -26,12 +26,12 @@ items_projeto = [
 
 # Quantidades dos itens de cada projeto
 items_qtd_projeto = [
-    [256,  64,  128], # Memória ROM Simples
+    [256,  64, 128], # Memória ROM Simples
     [512, 128, 64, 256],  # Calculadora de 4 bits
     [1024, 256, 64, 128],   # Sequenciador Musical
     [4096, 1024, 2048, 512],  # Processador de 8 Bits
-    [2048, 512, 256,  128],  # Display de Vídeo 8x8
-    [8192,  2048,  1024, 1024] # Supercomputador V13
+    [2048, 512, 256, 128],  # Display de Vídeo 8x8
+    [8192,  2048, 1024, 1024] # Supercomputador V13
 ]
 
 items_uteis = []
@@ -47,10 +47,11 @@ while not projeto_completo:
     if item_e_quantidade != "Construir!":
 
         # Dividir o número da palavra
+        # Dividir o número da palavra
         divisor = 0
-        for posicao_caracter in range(len(item_e_quantidade) - 1, -1, -1):
-            if item_e_quantidade[posicao_caracter] == " " and divisor == 0:
-                divisor = posicao_caracter
+        for caracter in range(len(item_e_quantidade) - 1, -1, -1):
+            if item_e_quantidade[caracter] == " " and divisor == 0:
+                divisor = caracter
 
         item = item_e_quantidade[:divisor]
         qtd_item = int(item_e_quantidade[divisor + 1:])
@@ -98,7 +99,10 @@ while not projeto_completo:
                 print(f"Pistões para mover as coisas de lugar. Isso vai ser útil! (+{qtd_item} Pistões)")
 
             elif item == "Pistões Aderentes":
-                print(f"Pistões Aderentes! Perfeitos para criar mecanismos retráteis. (+{qtd_item} Pistões Aderentes)")     
+                print(f"Pistões Aderentes! Perfeitos para criar mecanismos retráteis. (+{qtd_item} Pistões Aderentes)")
+
+            elif item == "Blocos de Notas":
+                print(f"Blocos de Notas! Quem sabe não rola uma musiquinha no final? (+{qtd_item} Blocos de Notas)")        
 
     # Relatório
     else: 
@@ -107,7 +111,7 @@ while not projeto_completo:
         faltantes = []
 
         # Checar se os items úteis tem as quantidades mínimas
-        for item, index in zip(items_projeto[projeto], range(len(items_qtd_projeto))):
+        for item, index in zip(items_projeto[projeto], range(len(items_qtd_projeto[projeto]))):
             
             if item in items_uteis:
                 posicao_qtd_item = items_uteis.index(item)
@@ -115,21 +119,23 @@ while not projeto_completo:
                 if qtd_items_uteis[posicao_qtd_item] < items_qtd_projeto[projeto][index]:
                     faltam = items_qtd_projeto[projeto][index] - qtd_items_uteis[posicao_qtd_item]
 
-                    faltam //= 64 if faltam // 64 > 0 else 1
-
+                    faltam //= 64
+                    if faltam < 1:
+                        faltam = 1
                     faltantes.append([faltam, item])
             
             else:
                 faltam = items_qtd_projeto[projeto][index] // 64
-
                 faltantes.append([faltam, item])
 
+        # Verifica se o projeto já tem o material necessário
         if len(faltantes) == 0:
-            projeto_completo =  True
+            projeto_completo = True
         
         # Imprime items faltando
         else:
-            print(f"Ainda não é possível construir o {nome_projeto}! Faltam:\n")
+            print(f"Ainda não é possível construir o {nome_projeto}! Faltam:")
+            print()
 
             for nome_item in items_projeto[projeto]:
 
@@ -140,15 +146,18 @@ while not projeto_completo:
             print()
 
 # O projeto foi concluído
-print(f"Viniccius13 conseguiu construir o {nome_projeto}! Partiu programar!\n")
-
-print(f"Para construirmos a(o) {nome_projeto}, utilizamos:\n")
+print(f"Viniccius13 conseguiu construir o {nome_projeto}! Partiu programar!")
+print()
+print(f"Para construirmos a(o) {nome_projeto}, utilizamos:")
+print()
 
 for item, qtd_item in zip(items_uteis, qtd_items_uteis):
     print(f"{item} : {qtd_item}")
 
 if (len(items_inuteis) > 0):
-    print(f"\nMas, em nossa jornada, também coletamos:\n")
+    print()
+    print(f"Mas, em nossa jornada, também coletamos:")
+    print()
 
     for item, qtd_item in zip(items_inuteis, qtd_items_inuteis):
         print(f"{item} : {qtd_item}")
