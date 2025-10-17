@@ -101,7 +101,7 @@ if determinante_p1 == determinante_p2:
 
     if desempate_p1 != desempate_p2:
         nome_ganhador = p1 if desempate_p1 > desempate_p2 else p2
-        nome_perdedor = p2 if desempate_p2 > desempate_p1 else p1
+        nome_perdedor = p2 if nome_ganhador == p1 else p1
 
         print(f"Contra todas as expectativas (inclusive as nossas), {nome_ganhador.capitalize()} venceu a rodada!")
         print(f"Seu momento de brilhar virou eclipse {nome_perdedor.capitalize()}. Melhor sorte no próximo flop!")
