@@ -47,7 +47,6 @@ while not projeto_completo:
     if item_e_quantidade != "Construir!":
 
         # Dividir o número da palavra
-        # Dividir o número da palavra
         divisor = 0
         for caracter in range(len(item_e_quantidade) - 1, -1, -1):
             if item_e_quantidade[caracter] == " " and divisor == 0:
