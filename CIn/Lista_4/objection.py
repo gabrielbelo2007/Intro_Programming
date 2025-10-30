@@ -6,15 +6,15 @@ def modificao_codigo(hora_morte, hora_modificao):
     return False
 
 def digitais_elisson_joao(digitais):
-    presentes = 0
+    presentes = []
 
     for digital in digitais:
 
         if digital == "Elisson":
-            presentes += 1
+            presentes.append("Elisson")
         
         if digital == "João Guilherme":
-            presentes += 2
+            presentes.append("João Guilherme")
     
     return presentes
 
@@ -31,10 +31,10 @@ print(f"Phoenix Wright: (Eu sinto que ele está escondendo algo... Devo pression
 
 escolha_inicial = input()
 
-print("-- DE VOLTA AO TRIBUNAL ---")
+print("--- DE VOLTA AO TRIBUNAL ---")
 print("Juiz: Promotoria, apresente as evidências.")
 print("Promotor Edgeworth: A promotoria acusa este homem pelo crime de assassinato...")
-print("romotor Edgeworth: ...João Guilherme!")
+print("Promotor Edgeworth: ...João Guilherme!")
 print("Promotor Edgeworth: Comecemos com a evidência virtual chave, o registro da última modificação no computador da vítima.")
 
 hora_modificao = int(input())
@@ -62,11 +62,11 @@ print(f"ARGUMENTOS FINAIS\n")
 if escolha_inicial == "pressionar":
 
     print("--- FLASHBACK: SALA DE VISITAS ---")
-    print("Phoenix Wright: HOLD IT! João, não é só isso! Eu não posso te defender se você não me contar tudo. O que realmente aconteceu naquela noite")
+    print("Phoenix Wright: HOLD IT! João, não é só isso! Eu não posso te defender se você não me contar tudo. O que realmente aconteceu naquela noite?")
     print("João Guilherme: (soluço)... Certo... Eu vou contar. Não era sobre a rixa... era sobre o 'Ticket Fantasma'.")
     print("João Guilherme: Um bug impossível no sistema da faculdade. Eu criei um código que o resolvia. Era a minha chance de conseguir o estágio dos sonhos.")
     print("João Guilherme: Eu... eu confiei em Arthur. Mostrei o código a ele para uma revisão. E ele... ele o roubou. Apresentou como se fosse dele, levou todo o crédito.")
-    print("João Guilherme: E o pior, Sr. Wright... eu cometi o erro de comentar sobre meu progresso com o Elisson, o 'monitordo povo'. Ele era o único, além de mim e de Arthur, que sabia da história toda. Ele observava nossa agilidade com os tickets com um sentimento sombrio! Se houver dedo delenisso, ele certamente tentará depôr para contar do roubo do meu código por Arthur para me incriminar!")
+    print("João Guilherme: E o pior, Sr. Wright... eu cometi o erro de comentar sobre meu progresso com o Elisson, o 'monitor do povo'. Ele era o único, além de mim e de Arthur, que sabia da história toda. Ele observava nossa agilidade com os tickets com um sentimento sombrio! Se houver dedo dele nisso, ele certamente tentará depôr para contar do roubo do meu código por Arthur para me incriminar!")
     print(f"--- FIM DO FLASHBACK ---\n")
 
     print("Promotor Edgeworth: A lógica é simples. O acusado tinha o motivo, suas digitais estão na arma, e a perícia mostra que o arquivo do 'Ticket Fantasma' foi modificado após a morte, provando que ele permaneceu na cena do crime!")
@@ -76,9 +76,9 @@ if escolha_inicial == "pressionar":
 
         print("Phoenix Wright: A sua lógica tem uma falha fatal, promotor! É impossível que meu cliente tenha modificado aquele arquivo!")
         print("Phoenix Wright: Pois a defesa pode provar que, no exato momento da modificação, João Guilherme estava a quilômetros de distância, comprando um café na 'Cafeteria Byte'! Temos o registro da transação e uma testemunha ocular!")
-        print(f"Phoenix Wright: A contradição temporal, combinada com este álibi, prova apenas uma coisa: a existência de uma terceira pessoa na cena do crime!\n")
+        print("Phoenix Wright: A contradição temporal, combinada com este álibi, prova apenas uma coisa: a existência de uma terceira pessoa na cena do crime!")
 
-        if digitais_elisson_joao(digitais) == 1 or digitais_elisson_joao(digitais) == 3:
+        if "Elisson" in digitais_elisson_joao(digitais):
 
             print("Phoenix Wright: Se meu cliente tem um álibi, quem poderia ser? Quem alteraria o arquivo do 'Ticket Fantasma' para incriminar João Guilherme?")
             print("Phoenix Wright: Só poderia ser alguém que conhecia a história... alguém que meu cliente confessou ter contado!")
@@ -88,17 +88,18 @@ if escolha_inicial == "pressionar":
 
             print("Elisson: N-NÃÃÃÃÃOOOOO! COMO... ELE TE CONTOU?! MEU PLANO ERA PERFEITO!")
             confessou =  True
-
+        
+        print()
         veredito = "INOCENTE"
 
-    elif digitais_elisson_joao(digitais) <= 1:
+    elif "João Guilherme" not in digitais_elisson_joao(digitais):
 
         print(f"Phoenix Wright: A promotoria não pode sequer provar que meu cliente tocou na arma do crime! Não há digitais dele!\n")
         veredito = "INOCENTE"
 
     else:
 
-        print(f"Phoenix Wright: (Droga... As digitais estão na arma e alinha do tempo da promotoria é sólida... Não tenho objeções...)\n")
+        print(f"Phoenix Wright: (Droga... As digitais estão na arma e a linha do tempo da promotoria é sólida... Não tenho objeções...)\n")
         veredito = "CULPADO"
 
 else:
@@ -108,7 +109,7 @@ else:
     print("Promotor Edgeworth: A lógica é simples. O acusado tinha o motivo, e suas digitais estão na arma. O caso está encerrado.")
     print(f"Phoenix Wright: OBJEÇÃO!\n")
 
-    if digitais_elisson_joao(digitais) <= 1:
+    if "João Guilherme" not in digitais_elisson_joao(digitais):
 
         print(f"Phoenix Wright: A promotoria não pode provar que meu cliente tocou na arma do crime! Não há digitais dele!\n")
         veredito = "INOCENTE"
