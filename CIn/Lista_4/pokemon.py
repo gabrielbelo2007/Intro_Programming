@@ -1,7 +1,7 @@
 fraquezas_resistencias = [
     # Tipo | Efetivo | Fraco
     ["fogo", "grama", "agua"],
-    ["agua", "fogo", "grama"],
+    ["agua", "fogo", "grama", "eletrico"],
     ["grama", "agua", "fogo"],
     ["eletrico", "agua", "N/D"]
 ]
@@ -18,7 +18,10 @@ def calculo_multiplicador(tipo_atacante, tipo_defensor, guia_vantagens):
             if tipo_defensor == vantagens[2]:
                 return 0.5
             
-            return 1.0
+            if tipo_atacante == "agua":
+
+                if tipo_defensor == vantagens[3]:
+                    return 0.5
     
     return 1.0 # Tipo Neutro
 
