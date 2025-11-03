@@ -153,9 +153,6 @@ def turno_makoto(acao_turno,resultado_acao, sombra_atual, makoto, vida_sombras, 
             else:
                 sombra_atual[4] = "Derrubado"
 
-            print("MAIS UM!")
-            print("Mitsuru: Você acertou uma fraqueza! Continue no ataque!")
-
             return True # Recebeu o "mais_um"
 
         elif resultado_acao[1] == "sem ajuda":
@@ -294,7 +291,7 @@ while makoto_status[0] > 0:
                 if sum(vida_sombras) > 0: # Verifica se não estão todas derrubadas
                     
                     sombras_derrubadas = 0
-                    sombras_ativas = 0
+                    sombras_derrotadas = 0
 
                     for sombra in range(num_sombras):
                         
@@ -303,18 +300,18 @@ while makoto_status[0] > 0:
                         if sombra_estado == "Derrubado":
                             sombras_derrubadas += 1
                         
-                        elif sombra_estado == "Ativo":
-                            sombras_ativas += 1
+                        elif sombra_estado == "Derrotado":
+                            sombras_derrotadas += 1
                     
-                    if sombras_derrubadas == num_sombras:
+                    if sombras_derrubadas == (num_sombras - sombras_derrotadas):
                         print("Mitsuru: Todos os inimigos cairam! Avancem com tudo!")
                         print("MASS DESTRUCTION!")
                         ganhou = True
 
-                    elif sombras_ativas == 0:
+                    elif (sombras_derrubadas + sombras_derrotadas) == num_sombras:
                         ganhou = True
                     
-                    elif resultado_acao[1] == 'acerto fraqueza':
+                    elif resultado_acao[1] == 'acerto fraqueza' or resultado_acao[1] == "junpei ajudou":
                         print("MAIS UM!")
                         print("Mitsuru: Você acertou uma fraqueza! Continue no ataque!")
                 
