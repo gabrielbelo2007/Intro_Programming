@@ -153,7 +153,7 @@ def turno_makoto(acao_turno,resultado_acao, sombra_atual, makoto, vida_sombras, 
             else:
                 sombra_atual[4] = "Derrubado"
 
-            print("MAIS UM")
+            print("MAIS UM!")
             print("Mitsuru: Você acertou uma fraqueza! Continue no ataque!")
 
             return True # Recebeu o "mais_um"
@@ -256,9 +256,10 @@ turnos = 1
 ganhou = False
 andares_explorados = 0
 
-
 sombra_alvo = sombras[sombra_atual_alvo]
 sombra_atacante = sombras[sombra_atual_atacante]
+
+mais_um = False
 
 while makoto_status[0] > 0:
 
@@ -267,11 +268,19 @@ while makoto_status[0] > 0:
 
         resultado_acao = [False] # Flag temporária
 
+        if not mais_um:
+            sombra_atual_alvo = 0
+            sombra_alvo = sombras[sombra_atual_alvo]
+
+            while sombra_alvo[4] == "Derrotado":
+                sombra_atual_alvo = (sombra_atual_alvo + 1) % num_sombras
+                sombra_alvo = sombras[sombra_atual_alvo]
+
         while not resultado_acao[0]:
             acao_turno = input()
             resultado_acao = makoto_acao(acao_turno, makoto_status, ajudas_total, persona_status)
 
-            if resultado_acao[0]:
+            if resultado_acao[0] or resultado_acao[1] in ["sem ajuda", "sem mana"]:
                 
                 if resultado_acao[2] > 0 and acao_turno not in ["junpei", "yukari"]:
                     print(f"Mitsuru: Makoto acertou {sombra_alvo[0]} causando {resultado_acao[2]} de dano!")
@@ -284,18 +293,25 @@ while makoto_status[0] > 0:
 
                 if sum(vida_sombras) > 0: # Verifica se não estão todas derrubadas
                     
+                    sombras_derrubadas = 0
                     sombras_ativas = 0
 
                     for sombra in range(num_sombras):
                         
                         sombra_estado = sombras[sombra][4]
 
-                        if sombra_estado == "Ativo":
+                        if sombra_estado == "Derrubado":
+                            sombras_derrubadas += 1
+                        
+                        elif sombra_estado == "Ativo":
                             sombras_ativas += 1
                     
-                    if sombras_ativas == 0:
+                    if sombras_derrubadas == num_sombras:
                         print("Mitsuru: Todos os inimigos cairam! Avancem com tudo!")
                         print("MASS DESTRUCTION!")
+                        ganhou = True
+
+                    elif sombras_ativas == 0:
                         ganhou = True
                     
                     elif resultado_acao[1] == 'acerto fraqueza':
@@ -305,34 +321,25 @@ while makoto_status[0] > 0:
                 elif sum(vida_sombras) == 0:
                     ganhou = True
 
-        if not ganhou:
-
+        if not ganhou and (sombra_alvo[4] == "Derrotado" or mais_um): 
+            
             sombra_atual_alvo = (sombra_atual_alvo + 1) % num_sombras
             sombra_alvo = sombras[sombra_atual_alvo]
 
-            contador = 0
-            while sombra_alvo[4] in ["Derrotado", "Derrubado"] and contador < num_sombras:
+            while sombra_alvo[4] == "Derrotado":
                 sombra_atual_alvo = (sombra_atual_alvo + 1) % num_sombras
                 sombra_alvo = sombras[sombra_atual_alvo]
-                contador += 1
         
         vez_atual = "Makoto" if mais_um else "Sombras"
 
     if vez_atual == "Sombras" and not ganhou:
 
-
-        if sombra_atacante[4] == "Derrotado":
+        while sombra_atacante[4] == "Derrotado":
             sombra_atual_atacante = (sombra_atual_atacante + 1) % num_sombras
             sombra_atacante = sombras[sombra_atual_atacante]
-            
-            contador = 0
-            while sombra_atacante[4] == "Derrotado" and contador < len(vida_sombras):
-                sombra_atual_atacante = (sombra_atual_atacante + 1) % num_sombras
-                sombra_atacante = sombras[sombra_atual_atacante]
-                contador += 1
 
         if sombra_atacante[4] == "Derrubado":
-            sombra_atacante[4] == "Ativo"
+            sombra_atacante[4] = "Ativo"
 
         dano_causado = turno_sombra(sombra_atacante, makoto_status)
 
@@ -340,12 +347,6 @@ while makoto_status[0] > 0:
 
         sombra_atual_atacante = (sombra_atual_atacante + 1)  % num_sombras
         sombra_atacante = sombras[sombra_atual_atacante]
-        
-        contador = 0
-        while sombra_atacante[4] != "Ativo" and contador < len(vida_sombras):
-            sombra_atual_atacante = (sombra_atual_atacante + 1)  % num_sombras
-            sombra_atacante = sombras[sombra_atual_atacante]
-            contador += 1
 
         vez_atual = "Makoto"
 
