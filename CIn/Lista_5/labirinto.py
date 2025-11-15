@@ -1,7 +1,8 @@
 horario = input()
 minutos_restantes = 60 - int(horario[3:])
 
-print(f"O relógio marca 23 horas e {horario[3:]} minuto(s)! Byte tem apenas {minutos_restantes} minuto(s) para escapar!")
+minutos_print = horario[3:] if int(horario[3:]) >= 10 else horario[4:]
+print(f"O relógio marca 23 horas e {minutos_print} minuto(s)! Byte tem apenas {minutos_restantes} minuto(s) para escapar!")
 
 tam = int(input())
 
