@@ -63,25 +63,30 @@ def mostrar_placar(candidatas_pontuacoes, candidatas_popularidade, fase):
     # Contabilizando quantidade de pontuações
     pontuacoes = ()
     for candidata in candidatas_pontuacoes:
-        pontuacoes = pontuacoes + candidatas_pontuacoes[candidata]
+        pontuacoes = pontuacoes + (candidatas_pontuacoes[candidata],)
 
     frequencia_pontuacoes = contagem_frequencia(pontuacoes)
-    pontuacao_empatada = max(frequencia_pontuacoes, key=frequencia_pontuacoes.get)
     
     # Salvando candidatas com mesma pontuação
     candidatas_empatadas = ()   
-    for candidata in candidatas_pontuacoes:
+    for candidata, pontuacao_empatada in zip(candidatas_pontuacoes, frequencia_pontuacoes):
 
-        if candidatas_pontuacoes[candidata] == pontuacao_empatada:
-            candidatas_empatadas = candidatas_empatadas + candidata
+        if frequencia_pontuacoes[pontuacao_empatada] > 1:
+
+            for candidata in candidatas_pontuacoes:
+
+                if candidatas_pontuacoes[candidata] == pontuacao_empatada:
+                    candidatas_empatadas = candidatas_empatadas + (candidata,)
+
 
     # Impressão candidatas
     print(f"=== PLACAR DA {fase}ª FASE ===")
 
     qtd_candidatas = len(candidatas_pontuacoes)
-
     candidatas_printadas = ()
-    while len(candidatas_printadas) <= qtd_candidatas:
+
+    # Desempate pontuação
+    while len(candidatas_printadas) < qtd_candidatas:
 
         candidata_maior_pontuacao = ("", 0)
         
@@ -90,31 +95,64 @@ def mostrar_placar(candidatas_pontuacoes, candidatas_popularidade, fase):
             if candidatas_pontuacoes[candidata] > candidata_maior_pontuacao[1] and candidata not in candidatas_printadas:
                 candidata_maior_pontuacao = (candidata, candidatas_pontuacoes[candidata])
         
+        # Verifica se tem empate de pontução
         if candidata_maior_pontuacao[0] in candidatas_empatadas:
             
             candidatas_desempatadas = 0
-            while candidatas_desempatadas <= len(candidatas_empatadas):
+            while candidatas_desempatadas < frequencia_pontuacoes[candidata_maior_pontuacao[1]]:
 
                 candidata_maior_popularidade = ("", 0)
+                empatou = False
 
                 for candidata in candidatas_empatadas:
                     
-                    if candidatas_popularidade[candidata] > candidata_maior_popularidade[1] and candidata not in candidatas_printadas:
-                        candidata_maior_popularidade = (candidata, candidatas_popularidade[candidata])
+                    # Verificar apenas as empatadas com mesma pontuação por vez
+                    if candidatas_pontuacoes[candidata] == candidata_maior_pontuacao[1]:
+                    
+                        if candidatas_popularidade[candidata] > candidata_maior_popularidade[1] and candidata not in candidatas_printadas:
 
+                            candidata_maior_popularidade = (candidata, candidatas_popularidade[candidata])
+                            empatadas_popularidade = (candidata,)
 
-                    # Desempate lexicográfico
-                    elif candidatas_popularidade[candidata] == candidata_maior_popularidade[1]:
-                        pass
+                        # Desempate lexicográfico (empatadas em popularidade)
+                        elif candidatas_popularidade[candidata] == candidata_maior_popularidade[1]:
+                            empatadas_popularidade = empatadas_popularidade + (candidata,)
+                            empatou = True
+    
+                # Empate de popularidade
+                if empatou:  
+                    
+                    desempatadas_popularidade = 0
+                    qtd_empatadas_popularidade = len(empatadas_popularidade)
+                    while desempatadas_popularidade < qtd_empatadas_popularidade:
 
-                # Essa posição do print não está boa, para o caso de ter um empate e desempatar com lexicografia
-                print(f"{candidata_maior_popularidade[0]} --- {candidatas_pontuacoes[candidata]}")
+                        candidata_ordem = empatadas_popularidade[0]
+
+                        for candidata_empatada in empatadas_popularidade:
+
+                            if candidata_empatada < candidata_ordem and candidata not in candidatas_printadas:
+                                candidata_ordem = candidata_empatada
+                            
+                        print(f"{candidata_ordem} --- {candidatas_pontuacoes[candidata_ordem]}")
+
+                        candidatas_printadas = candidatas_printadas + (candidata_ordem,)
+                        empatadas_popularidade = tuple(empatada for empatada in empatadas_popularidade if empatada != candidata_ordem)
+                        
+                        desempatadas_popularidade += 1
+                    
+                    candidatas_desempatadas += desempatadas_popularidade
+
+                # Caso não tenham empatadas em popularidade      
+                else:
+                    print(f"{candidata_maior_popularidade[0]} --- {candidatas_pontuacoes[candidata_maior_popularidade[0]]}")
+
+                    candidatas_printadas = candidatas_printadas + (candidata_maior_popularidade[0],)
+                    candidatas_desempatadas += 1
 
         else:
             print(f"{candidata_maior_pontuacao[0]} --- {candidata_maior_pontuacao[1]}")
 
-        candidatas_printadas = candidatas_printadas + candidata_maior_pontuacao[0]
-
+            candidatas_printadas = candidatas_printadas + (candidata_maior_pontuacao[0],)
 
 
 desc_candidata = ""
@@ -141,7 +179,7 @@ while desc_candidata != "FIM DAS INSCRIÇÕES":
             # Verificando candidata escondida
             letras_candidata = ()
             for letra in candidata:
-                letras_candidata = letras_candidata + letra
+                letras_candidata = letras_candidata + (letra)
             
             for diva in divas_estadunidenses:
                 
@@ -149,11 +187,11 @@ while desc_candidata != "FIM DAS INSCRIÇÕES":
 
                     letras_diva = ()
                     for letra in diva:
-                        letras_diva = letras_diva + letra
+                        letras_diva = letras_diva + (letra)
 
                     if verificar_permutacao(letras_candidata, letras_diva):
                         candidata = diva
-                        penalidade -= 100
+                        penalidade = -100
                         pais = "EUA"
             
             # Adicionando candidatas no dicionário de candidatas
@@ -181,6 +219,6 @@ while desc_candidata != "FIM DAS INSCRIÇÕES":
         else:
             print(f"Só pode ter uma {candidata} na arena. Inscrição duplicada negada!")
 
-mostrar_placar(candidatas_pontuacao, candidatas_popularidade)
+mostrar_placar(candidatas_pontuacao, candidatas_popularidade, 1)
 
 # FASE 2
