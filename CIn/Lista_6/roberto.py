@@ -231,7 +231,7 @@ if len(candidatas_pontuacao) > 1:
 
 # FASE 3
 if len(candidatas_pontuacao) > 1:
-  
+
     divas_com_habilidades = ("Lady Gaga", "Beyoncé", "Anitta")
 
     sem_jogada_especial = True
@@ -252,13 +252,10 @@ if len(candidatas_pontuacao) > 1:
         if candidata == "Beyoncé":
             posicao_beyonce = posicao_candidata
 
-        if posicao_candidata == 1:
-            primeiro_lugar = candidata
-
-        if posicao_candidata == qtd_candidatas - 2:
+        if posicao_candidata == qtd_candidatas - 1:
             penultimo_lugar = candidata
 
-        if posicao_candidata == qtd_candidatas - 1:
+        if posicao_candidata == qtd_candidatas:
             ultimo_lugar = candidata
 
         posicao_candidata += 1
@@ -289,41 +286,40 @@ if len(candidatas_pontuacao) > 1:
 
                 candidatas_pontuacao.pop("Lady Gaga")
 
-        candidatas_pontuacao = ordernar_candidatas(candidatas_pontuacao, candidatas_popularidade)
+            candidatas_pontuacao = ordernar_candidatas(candidatas_pontuacao, candidatas_popularidade)
 
         # Beyoncé
         if posicao_beyonce > 0:
+
+            qtd_candidatas = len(candidatas_pontuacao)
             
             if qtd_candidatas > 2:
 
                 candidatas_fracas = ()
-                pontuacao_candidatas = 0
+                pontuacao_candidatas_fracas = 0
 
-                for posicao_alvo in range(len(candidatas_pontuacao), 1, -1):
+                todas_divas = tuple(diva_nome for diva_nome in candidatas_pontuacao)
 
-                    if posicao_alvo != posicao_beyonce and len(candidatas_fracas) < 2:
-                        
-                        posicao_candidata = len(candidatas_pontuacao)
-                        for candidata in candidatas_pontuacao:
+                # Itera a lista de divas de trás para frente, pegando as duas últimas
+                for posicao_alvo in range(qtd_candidatas - 1, -1, -1):
 
-                            if posicao_candidata == posicao_alvo:
-                                
-                                candidatas_fracas = candidatas_fracas + (candidata,)
-                                pontuacao_candidatas += candidatas_pontuacao[candidata]
-                            
-                            posicao_candidata -= 1
+                    nome_alvo = todas_divas[posicao_alvo]
 
-                if pontuacao_candidatas <= candidatas_pontuacao["Beyoncé"]:
+                    if len(candidatas_fracas) < 2 and nome_alvo != "Beyoncé":
+                        candidatas_fracas += (nome_alvo,)
+                        pontuacao_candidatas_fracas += candidatas_pontuacao[nome_alvo]
+                
+                if candidatas_pontuacao["Beyoncé"] >= pontuacao_candidatas_fracas:
                     
                     adicao_total = 0
                     for candidata in candidatas_fracas:
 
-                        adicao_pontuacao = int(candidatas_pontuacao[candidata] * 0.10)
-                        candidatas_pontuacao[candidata] = candidatas_pontuacao[candidata] + adicao_pontuacao
+                        adicao_pontuacao = candidatas_pontuacao[candidata] * 0.10
+                        candidatas_pontuacao[candidata] = int(candidatas_pontuacao[candidata] + adicao_pontuacao)
                         
                         adicao_total += adicao_pontuacao
 
-                    candidatas_pontuacao["Beyoncé"] = candidatas_pontuacao["Beyoncé"] + adicao_total
+                    candidatas_pontuacao["Beyoncé"] = int(candidatas_pontuacao["Beyoncé"] + adicao_total)
                     print('PAREM TUDO! Queen Bey ativou a "Formation"! Ela reorganizou o jogo, elevou as novatas e saiu ainda mais forte!')
 
                 else:
@@ -334,25 +330,33 @@ if len(candidatas_pontuacao) > 1:
 
 
         # Anitta
-        if primeiro_lugar != "Anitta" and "Anitta" in candidatas_pontuacao:
+        if "Anitta" in candidatas_pontuacao:
+
+            primeiro_lugar = ""
+            for candidata in candidatas_pontuacao:
+
+                if primeiro_lugar == "":
+                    primeiro_lugar = candidata
+
+            if primeiro_lugar != "Anitta":
+                if candidatas_popularidade["Anitta"] >= (candidatas_popularidade[primeiro_lugar] * 0.9):
+
+                    print(f'A PATROA TÁ ON! Anitta usou "Envolver" e fez {primeiro_lugar} dançar conforme sua música, virando o placar a seu favor!')
+                    pontos_roubados = (candidatas_pontuacao[primeiro_lugar] - candidatas_pontuacao["Anitta"]) * 0.25
+
+                    # Atualizar pontuação do primeiro lugar
+                    candidatas_pontuacao[primeiro_lugar] = int(candidatas_pontuacao[primeiro_lugar] - pontos_roubados)
+
+                    # Atualizar pontuação da Anitta
+                    candidatas_pontuacao["Anitta"] = int(candidatas_pontuacao["Anitta"] + pontos_roubados)
+
+                else:
+
+                    print('DEU RUIM! A tentativa de "Envolver" de Anitta não funcionou! A jogada foi arriscada e o público não comprou a ideia.')
+                    candidatas_pontuacao["Anitta"] -= 75
             
-            if candidatas_popularidade["Anitta"] >= (candidatas_popularidade[primeiro_lugar] * 0.9):
-
-                print(f'A PATROA TÁ ON! Anitta usou "Envolver" e fez {primeiro_lugar} dançar conforme sua música, virando o placar a seu favor!')
-                pontos_roubados = (candidatas_pontuacao[primeiro_lugar] - candidatas_pontuacao["Anitta"]) * 0.25
-
-                # Atualizar pontuação do primeiro lugar
-                candidatas_pontuacao[primeiro_lugar] = int(candidatas_pontuacao[primeiro_lugar] - pontos_roubados)
-
-                # Atualizar pontuação da Anitta
-                candidatas_pontuacao["Anitta"] = int(candidatas_pontuacao["Anitta"] + pontos_roubados)
-
-            else:
-
-                print('DEU RUIM! A tentativa de "Envolver" de Anitta não funcionou! A jogada foi arriscada e o público não comprou a ideia.')
-                candidatas_pontuacao["Anitta"] = candidatas_pontuacao["Anitta"] - 75
+                candidatas_pontuacao = ordernar_candidatas(candidatas_pontuacao, candidatas_popularidade)
         
-        candidatas_pontuacao = ordernar_candidatas(candidatas_pontuacao, candidatas_popularidade)
         mostrar_placar(candidatas_pontuacao, 3)
 
 # RESULTADO FINAL
