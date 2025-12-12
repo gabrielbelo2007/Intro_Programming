@@ -202,8 +202,11 @@ def encontrar_melhor_musica(melhores_musicas, musicas):
             diva_musica = empates_qtd[0]
 
             # 3° Desempate (Lexicográfico)
+            def obter_nome(tupla):
+                return tupla[0]
+
             if len(empates_qtd) > 1:
-                diva_musica = min(empates_qtd, key=lambda item: item[0])
+                diva_musica = min(empates_qtd, key=obter_nome)
 
     return diva_musica
 
@@ -384,7 +387,10 @@ if uma_musica_aceita:
                         votos_divas[diva_votada]["Votantes"][votante] = votos_divas[diva_votada]["Votantes"].get(votante, 0) + 1
             
             if not nenhum_voto:
-                diva_campea = max(votos_divas, key=lambda diva_votada: votos_divas[diva_votada]["Total Votos"])
+                def obter_diva(nome_diva):
+                    return votos_divas[nome_diva]["Total Votos"]
+
+                diva_campea = max(votos_divas, key=obter_diva)
                 votantes_ganhadora = votos_divas[diva_campea]["Votantes"]
 
                 maior_fa = encontrar_fa(votantes_ganhadora)
