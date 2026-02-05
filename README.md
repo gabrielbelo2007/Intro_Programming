@@ -54,6 +54,42 @@
      </ul>     
 </details>
 
+<details>
+<summary><a href="Lista_5"><strong>Lista 4 - Funções</strong></a></summary>
+     <ul>
+          <li><a href="CIn/Lista_4/celeste.py">Questão 1</a></li>
+          <li><a href="CIn/Lista_4/objection.py">Questão 2</a></li>
+          <li><a href="CIn/Lista_4/fatalis.py">Questão 3</a></li>
+          <li><a href="CIn/Lista_4/pokemon.py">Questão 4</a></li>
+          <li><a href="CIn/Lista_4/conflagracao.py">Questão 5</a></li>
+          <li><a href="CIn/Lista_4/hora_sombria.py">Questão 6</a></li>
+     </ul>     
+</details>
+
+<details>
+<summary><a href="Lista_5"><strong>Lista 5 - Recursão</strong></a></summary>
+     <ul>
+          <li><a href="CIn/Lista_5/enigma.py">Questão 1</a></li>
+          <li><a href="CIn/Lista_5/registradora.py">Questão 2</a></li>
+          <li><a href="CIn/Lista_5/doces.py">Questão 3</a></li>
+          <li><a href="CIn/Lista_5/fuga.py">Questão 4</a></li>
+          <li><a href="CIn/Lista_5/labirinto.py">Questão 5</a></li>
+          <li><a href="CIn/Lista_5/fnaf.py">Questão 6</a></li>
+     </ul>     
+</details>
+
+<details>
+<summary><a href="Lista_6"><strong>Lista 6 - Tuplas e Dicionários</strong></a></summary>
+     <ul>
+          <li><a href="CIn/Lista_6/sabrina.py">Questão 1</a></li>
+          <li><a href="CIn/Lista_6/ariana.py">Questão 2</a></li>
+          <li><a href="CIn/Lista_6/charli.py">Questão 3</a></li>
+          <li><a href="CIn/Lista_6/taylor.py">Questão 4</a></li>
+          <li><a href="CIn/Lista_6/roberto.py">Questão 5</a></li>
+          <li><a href="CIn/Lista_6/eras.py">Questão 6</a></li>
+     </ul>     
+</details>
+
 ## CS50
 
 ### Sets
